@@ -1,3 +1,28 @@
-.side-bar {
-  
+* {
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+main {
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "sidebar main main"
+  "sidebar footer footer";
+}
+
+aside {
+  grid-area: sidebar;
+}
+
+.top-section {
+  grid-area: main;
+}
+
+.bottom-section {
+  grid-area: footer;
 }
