@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	 <meta charset="UTF-8">
+	 <title>Ideabox Redux | Ed, Tay, Kay</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <link rel="stylesheet" type="text/css" href="styles.css">
+   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+<body>
+  <main>
+    <aside class="side-bar">
+      <h1>IdeaBox Redux</h1>
+      <hr/>
+      <label>Filter Starred Ideas</label>
+      <button>Show Starred Ideas</button>
+      <hr/>
+      <label>Filter by Quality</label>
+      <ul>
+        <li>Swill</li>
+        <li>Plausible</li>
+        <li>Genius</li>
+      </ul>
+      <label>New Quality</label>
+      <input type = "text">
+      <button>Add New Quality</button>
+      <hr/>
+    </aside>
+    <section class="top-section">
+      <label>Title</label>
+      <input type = "text">
+      <label>Body</label>
+      <textarea rows="4" cols="40"></textarea>
+      <button>Save</button>
+      <form class="search">
+        <button type="submit" class="search-button">
+          <i class="fa fa-search"></i>
+        </button>
+        <input type="text" placeholder="Search" class="searchterm" name="search">
+      </form>
+    </section>
+    <section class = "bottom-section">
+      <div class="idea-card">
+        <hr/>
+        <h2>Idea title</h2>
+        <p>Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        <hr/>
+      </div>
+    </section>
+  </main>
+
+
+  <script src="idea.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
