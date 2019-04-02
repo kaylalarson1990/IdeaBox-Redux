@@ -1,8 +1,8 @@
 * {
   box-sizing: border-box;
-  /*border: 1px solid red;*/
+  border: 1px solid red;
 }
-
+/*-------------------- Body -------------- */
 body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
@@ -16,12 +16,22 @@ main {
   "sidebar footer footer";
 }
 
+ul {
+    list-style-type: none;
+}
+
+/*------------------  Aside -----------------*/
 aside {
   grid-area: sidebar;
-  background-color: #1f1f3b;
+  background-color: #1f1f3D;
   color: #ffffff;
   display: flex;
   flex-direction: column;
+}
+
+button {
+  background-color:#5356a4;
+  color:#e9e9f3;
 }
 
 .wrap {
@@ -71,7 +81,7 @@ aside {
 label {
   font-size: 16px;
   font-weight: 500;
-  color: #1f1f3b;
+  color: #bfbfdd;
 }
 
 #title-text,
