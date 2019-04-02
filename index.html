@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
  <head>
-     <meta charset="UTF-8">
-     <title>Ideabox Redux | Ed, Tay, Kay</title>
+  <meta charset="UTF-8">
+  <title>Ideabox Redux | Ed, Tay, Kay</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  </head>
 <body>
-
   <main>
     <aside class="side-bar">
       <h1>IdeaBox Redux</h1>
@@ -23,7 +22,7 @@
         <li>Genius</li>
       </ul>
       <label class="side-bar-label">New Quality</label>
-      <input type = "text">
+      <input type = "text" class="side-bar-input">
       <button class="side-bar-button">Add New Quality</button>
       <hr/>
     </aside>
@@ -35,7 +34,7 @@
         </form>
         <form class="body">
           <label for="body-text">Body</label>
-          <textarea rows="4" cols="40" id="body-text"></textarea>
+          <textarea rows="2" cols="30" id="body-text"></textarea>
           <button type="submit" class="save-button">Save
           </button>
         </form>
@@ -43,7 +42,7 @@
           <button type="submit" class="search-button">
             <i class="fa fa-search"></i>
           </button>
-          <input type="text" placeholder="Search" class="searchterm" name="search">
+          <input type="text" placeholder="Search ideas" class="searchterm" name="search">
       </form>
       </figure> 
     </section>
@@ -60,7 +59,7 @@
       </div>
     </section>
   </main>
-
+  
  <script src="idea.js"></script>
  <script src="main.js"></script>
 </body>
