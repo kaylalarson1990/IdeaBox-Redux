@@ -163,22 +163,32 @@ label {
 }
 
 .idea-card {
- width: 25%;
  background-color: #ffffff;
- height: 50%;
- margin: 2%;
+ width: 250px;
+ height: auto;
+ display: flex;
+ flex-flow: column;
+ justify-content: center;
  font-size: 12px;
 }
+
 .idea-card h2 {
  font-size: 14px;
  text-align: left;
+ margin-left: 2%;
 }
 
+.idea-card-paragraph {
+  margin-left: 2%;
+}
 
-.idea-card-header,
 .idea-card-footer {
- height: 6%;
+ height: 15%;
+ display: flex;
+ color: #ffffff;
+ justify-content: center;
 }
+
 
 .idea-card-header {
  background-color: #1f1f3b;
@@ -190,25 +200,21 @@ label {
  background-color: #5356A5;
 }
 
-.idea-card-header {
-  background-color: #1f1f3b;
-  width: 100%;
-  height: 20%;
+
+.icon{
+  display: flex;
 }
 
-.idea-card-footer {
-  background-color: #5356A5;
-}
-.icon {
-  height: 1.5em;
-  width: 1.5em;
+.idea-card-icons {
+  height: 30px;
+  width: 30px;
 }
 
-.left {
+#star-icon {
  float: left;
 }
 
-.right {
+#close-icon {
  float: right;
 /*  color: #ffffff;
  border-radius: 5px;
@@ -220,6 +226,17 @@ label {
  margin-bottom: 10px;
  cursor: pointer;*/
 }
+
+.downvote-icon {
+  margin-top: 2%;
+  margin-left: 10%;
+}
+
+.upvote-icon {
+  margin-top: 2%;
+  margin-right: 10%;
+}
+
 
 .bottom-section {
  grid-area: footer;
