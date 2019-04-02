@@ -92,6 +92,29 @@ label {
 
 .save-button {
   background-color: #1f1f3b;
+  
+
+}
+
+.idea-card {
+  width: 30%;
+}
+
+.idea-card-header,
+.idea-card-footer {
+  height: 10%;
+}
+.icon {
+  height: 1em;
+  width: 1em;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
   color: #ffffff;
   border-radius: 5px;
   width: 100%;
