@@ -28,6 +28,7 @@ h1 {
   display:flex;
   font-size: 1em;
   font-weight: lighter;
+  margin:.7em;
 }
 
 label {
@@ -50,6 +51,8 @@ aside {
 button {
   background-color:#5356a4;
   color:#e9e9f3;
+  font-weight:bold;
+  margin:.7em;
 }
 
 .wrap {
