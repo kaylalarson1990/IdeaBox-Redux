@@ -8,7 +8,7 @@
 body {
  font-family: "Open Sans", sans-serif;
  margin: 0;
- height: 100vh;
+ height: 100%;
 }
 
 main {
@@ -32,32 +32,6 @@ aside {
 aside h1 {
  font-size: 17px;
  margin: 5%;
-}
-
-.side-bar-button {
-  background-color: #5356A5;
-  color: #E9E9F3;
-  width: 90%;
-  border: none;
-  height: 5%;
-  font-weight: 700;
-  font-size: 16px;
-  margin-left: 5%;
-  margin-top: 2%;
-  border-radius: 5%
-}
-.side-bar-label {
- color: #BFBFDD;
- font-size: 14px;
- margin: 5%;
-}
-
-.side-bar-input {
-  border-radius: 5px;
-  padding: 10px;
-  border: 1px solid #1f1f3b;
-  margin: 5%;
-  font-size: 16px;
 }
 
 hr {
@@ -86,6 +60,34 @@ li:hover{
   background-color:#d14119;
   border-left: 4px solid #f58e72;
 }
+
+.side-bar-button {
+  background-color: #5356A5;
+  color: #E9E9F3;
+  width: 90%;
+  border: none;
+  height: 28px;
+  font-weight: 700;
+  font-size: 16px;
+  margin-left: 5%;
+  margin-top: 2%;
+  border-radius: 5%
+}
+.side-bar-label {
+ color: #BFBFDD;
+ font-size: .8em;
+ margin: 5%;
+}
+
+.side-bar-input {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #1f1f3b;
+  margin: 5%;
+  font-size: 16px;
+}
+
+
 
 /* ------- top section ---------- */
 
@@ -125,7 +127,6 @@ li:hover{
  display: flex;
  justify-content: center;
  grid-area: main;
- height: 45vh;
 }
 
 .idea-box {
@@ -247,5 +248,5 @@ label {
 .bottom-section {
  grid-area: footer;
  background-color: #eaeaf4;
- height: 55vh;
+ height: 160vh;
 }
