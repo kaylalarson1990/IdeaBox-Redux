@@ -26,20 +26,29 @@
       <button>Add New Quality</button>
       <hr/>
     </aside>
+    <article class="body">
     <section class="top-section">
-      <container class = "idea-form">
-        <label>Title</label>
-        <input type = "text">
-        <label>Body</label>
-        <textarea rows="4" cols="40"></textarea>
-        <button class="save-button">Save</button>
+      <figure class="idea-box">
+        <form class="title">
+          <label for="title-text">Title</label>
+          <input type="text" id="title-text">
+        </form>
+        <form class="body">
+          <label for="body-text">Body</label>
+          <textarea rows="4" cols="40" id="body-text"></textarea>
+          <button type="submit" class="save-button">Save
+          </button>
+        </form>
         <form class="search">
           <button type="submit" class="search-button">
             <i class="fa fa-search"></i>
           </button>
           <input type="text" placeholder="Search" class="searchterm" name="search">
       </form>
-    </container>
+      </figure>
+    </section>
+  </article>
+    
     </section>
     <section class = "bottom-section">
       <div class="idea-card">
