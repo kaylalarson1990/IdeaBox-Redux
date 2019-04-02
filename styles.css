@@ -92,6 +92,12 @@ li:hover{
 /* ------- top section ---------- */
 
 
+label {
+ font-size: 16px;
+ font-weight: 500;
+ color: #1f1f3b;
+}
+
 .searchterm {
   border: 1px solid lightgrey;
   outline: none;
@@ -133,12 +139,6 @@ li:hover{
  flex-direction: column;
 }
 
-
-label {
- font-size: 16px;
- font-weight: 500;
- color: #1f1f3b;
-}
 
 #title-text,
 #body-text {
