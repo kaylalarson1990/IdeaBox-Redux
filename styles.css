@@ -1,8 +1,8 @@
 * {
   box-sizing: border-box;
-  /*border: 1px solid red;*/
+  border: 1px solid red;
 }
-
+/*-------------------- Body -------------- */
 body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
@@ -16,12 +16,43 @@ main {
   "sidebar footer footer";
 }
 
+ul {
+    list-style-type: none;
+    padding-inline-start:8px;
+    color:#ffffff;
+    font-weight: lighter;
+    font-size:1.1em;
+}
+
+h1 {
+  display:flex;
+  font-size: 1em;
+  font-weight: lighter;
+  margin:.7em;
+}
+
+label {
+  font-size: .8em;
+  font-weight: lighter;
+  color: #bfbfdd;
+  margin-left: .8em;
+}
+
+
+/*------------------  Aside -----------------*/
 aside {
   grid-area: sidebar;
-  background-color: #1f1f3b;
+  background-color: #1f1f3D;
   color: #ffffff;
   display: flex;
   flex-direction: column;
+}
+
+button {
+  background-color:#5356a4;
+  color:#e9e9f3;
+  font-weight:bold;
+  margin:.7em;
 }
 
 .wrap {
@@ -67,12 +98,6 @@ aside {
   flex-direction: column;
 }
 
-
-label {
-  font-size: 16px;
-  font-weight: 500;
-  color: #1f1f3b;
-}
 
 #title-text,
 #body-text {
