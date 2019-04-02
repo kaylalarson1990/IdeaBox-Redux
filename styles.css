@@ -79,6 +79,12 @@ ul {
 li {
   margin-top: 3%;
   margin-bottom: 3%;
+  border-left: 4px solid #1f1f3d;
+}
+
+li:hover{
+  background-color:#d14119;
+  border-left: 4px solid #f58e72;
 }
 
 /* ------- top section ---------- */
