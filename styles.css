@@ -6,6 +6,7 @@
 body {
  font-family: "Open Sans", sans-serif;
  margin: 0;
+ height: 100vh;
 }
 
 main {
@@ -89,6 +90,7 @@ ul {
  background-color: #a9aad2;
  display: flex;
  justify-content: center;
+ grid-area: main;
 }
 
 .idea-box {
