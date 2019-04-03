@@ -42,7 +42,9 @@ var qualityType = document.querySelector("#quality-type");
 var ideaContainer = document.querySelector(".bottom-section")
 
 
-var ideas = [];
+//Idea Array//
+var ideaArray = JSON.parse(localStorage.getItem('key')) || [];
+
 
 
 
@@ -83,6 +85,7 @@ titleInput.addEventListener("keyup", enableBtn)
 
 /*---------------- Functions ------------*/
 
+
 function createNewIdea() {
   var newTitle = titleInput.value;
   console.log(newTitle);
@@ -101,8 +104,6 @@ function createNewIdea() {
           <img src="images/downvote.svg" class="downvote-icon idea-card-icons" id="downvote-icon"/>
       </div></figure>
       `
-
-
 }
 
 function saveInput() {
@@ -110,11 +111,13 @@ function saveInput() {
   storeInput();
   clearInputs();
 }
-
-function storeInput(id, title, body) {
+//create another for saveStorage method idea.js//
+function storeInput(id, title, body/*ideaArray*/) {
 	var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
+	ideaArray.push(newIdea) 
 	var stringified = JSON.stringify(newIdea);
-	localStorage.setItem(newIdea.id, stringified);
+	newIdea.saveStorage(ideaArray)
+	// localStorage.setItem(newIdea.id, stringified);
 }
 
 
@@ -131,5 +134,10 @@ function enableBtn() {
 }
 
 function createNewIdeaCard() {}
+
+
+/*
+pageRefresh(array)
+for each item(param) in an array, create a new card
 
 

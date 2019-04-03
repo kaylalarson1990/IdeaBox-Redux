@@ -9,8 +9,7 @@ class Idea {
         JSON.stringify({})
       }
 
-
-  deleteFromStorate() {
+  deleteFromStorage() {
 
 
   }
@@ -23,5 +22,5 @@ class Idea {
  		
  	}
 
- 
+
 
