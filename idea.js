@@ -5,12 +5,11 @@ class Idea {
     this.body = body;
   }
   saveToStorage() {
-        //stringify idea and setItem to localStorage
-        JSON.stringify({})
+        var stringified = JSON.stringify(ideaArray);
+        localStorage.setItem("ideasSaved", stringified)
       }
-
   deleteFromStorage() {
-
+  		//localStorage.removeItem(this.id)//
 
   }
 
@@ -22,5 +21,5 @@ class Idea {
  		
  	}
 
-
+ }
 
