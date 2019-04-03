@@ -190,6 +190,7 @@ label {
  flex-flow: column;
  justify-content: center;
  font-size: 12px;
+ margin: 50px;
 }
 
 .idea-card h2 {
