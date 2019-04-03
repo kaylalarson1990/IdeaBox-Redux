@@ -13,17 +13,17 @@
       <h1>IdeaBox Redux</h1>
       <hr/>
       <label class="side-bar-label">Filter Starred Ideas</label>
-      <button class="side-bar-button">Show Starred Ideas</button>
+      <button class="side-bar-button" id="starred-ideas-btn">Show Starred Ideas</button>
       <hr/>
       <label class="side-bar-label">Filter by Quality</label>
       <ul>
-        <li>Swill</li>
-        <li>Plausible</li>
-        <li>Genius</li>
+        <li id="swill-filter">Swill</li>
+        <li id="plausible-filter">Plausible</li>
+        <li id="genius-filter">Genius</li>
       </ul>
       <label class="side-bar-label">New Quality</label>
-      <input type = "text" class="side-bar-input">
-      <button class="side-bar-button">Add New Quality</button>
+      <input type = "text" class="side-bar-input" id="new-quality-input">
+      <button class="side-bar-button" id="add-quality-btn">Add New Quality</button>
       <hr/>
     </aside>
     <section class="top-section">
@@ -35,24 +35,24 @@
         <form class="body">
           <label for="body-text">Body</label>
           <textarea rows="2" cols="30" id="body-text"></textarea>
-          <button type="submit" class="save-button">Save
+          <button type="submit" class="btn-save-idea" id="btn-save">Save
           </button>
         </form>
         <form class="search">
-          <button type="submit" class="search-button">
+          <button type="submit" class="btn-search-idea" id="btn-search">
             <i class="fa fa-search"></i>
           </button>
-          <input type="text" placeholder="Search ideas" class="searchterm" name="search">
+          <input type="text" placeholder="Search ideas" class="searchterm" id="search-input">
       </form>
       </figure> 
     </section>
     <section class = "bottom-section">
-      <figure class="idea-card">
+      <figure class="idea-card" id="idea-card">
         <header class="idea-card-header"><img src="images/star.svg" class="idea-card-icons" id="star-icon"/><img src="images/delete.svg" class="idea-card-icons" id="close-icon"/></header>
-        <h2>Idea title</h2>
-        <p class="idea-card-paragraph">Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        <h2 id="card-title">Idea title</h2>
+        <p class="idea-card-paragraph" id="card-paragraph">Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
         <div class="idea-card-footer">
-          <img src="images/upvote.svg" class="upvote-icon idea-card-icons"/><p>Quality:<span class="quality">Swill</span></p><img src="images/downvote.svg" class="downvote-icon idea-card-icons"/>
+          <img src="images/upvote.svg" class="upvote-icon idea-card-icons" id="upvote-icon"/><p>Quality:<span class="quality" id="quality-type">Swill</span></p><img src="images/downvote.svg" class="downvote-icon idea-card-icons" id="downvote-icon"/>
       </div>
       </figure>
     </section>
