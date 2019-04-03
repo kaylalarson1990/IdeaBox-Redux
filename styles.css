@@ -133,8 +133,8 @@ label {
  color: #1f1f3b;
 }
 
-#title-text,
-#body-text {
+#title-input,
+#body-input {
  border-radius: 5px;
  outline: none;
  width: 100%;
@@ -145,7 +145,7 @@ label {
  font-size: 16px;
 }
 
-#body-text  {
+#body-input {
  padding: 50px;
 }
 
@@ -160,6 +160,12 @@ label {
   margin-top: 1%;
   margin-bottom: 2%;
   cursor: pointer;
+}
+
+.disabled {
+  background-color: #eaeaf4;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .idea-card {
