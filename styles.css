@@ -73,6 +73,8 @@ li:hover{
   margin-top: 2%;
   border-radius: 5%
 }
+
+
 .side-bar-label {
  color: #BFBFDD;
  font-size: .8em;
@@ -251,7 +253,7 @@ label {
 
 
 .bottom-section {
- grid-area: footer;
- background-color: #eaeaf4;
- height: 160vh;
+  grid-area: footer;
+  background-color: #eaeaf4;
+  height: 55vh;
 }

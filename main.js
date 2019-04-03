@@ -17,13 +17,35 @@ var upvoteIcon = document.querySelector("#upvote-icon");
 var downvoteIcon = document.querySelector("#downvote-icon");
 var cardTitle = document.querySelector("#card-title");
 var cardPara = document.querySelector("#card-paragraph");
+// var cardContent = document.querySelector("#card-content")
+var qualityType = document.querySelector("#quality-type");
+var main = document.querySelector("#main");
+
+/*------------ localStorage -------------*/
+// var localStore = {
+//   saveTitleStorage: function() {
+//     localStorage.setItem("content", cardContent.innerHTML);
+//   },
+//   loadLocalStorage: function() {
+//     var contentStored = localStorage.getItem("content");
+//     if(contentStored) {
+//       cardContent.innerHTML = contentStored;
+//     }
+//   },
+//   // clearLocalStorage: function() {
+//   //   localStorage.removeItem("item");
+//   // }
+// };
+
 var qualityType = document.querySelector("#quality-type");
 
 var ideaContainer = document.querySelector(".bottom-section")
 var ideaCard = document.createElement("div");
 ideaCard.classList.add("idea-card")
 
-var ideas = [];
+//Idea Array//
+var ideaArray = JSON.parse(localStorage.getItem('key')) || [];
+
 
 
 
@@ -38,6 +60,21 @@ var ideas = [];
 /*------------- Global Variables ---------*/
 
 /*------------- Event Listeners ----------*/
+closeIcon.addEventListener("click", function removeIdea() {
+  ideaCard.innerHTML = '';
+}, false);
+
+ideaCard.addEventListener("mouseout", updateIdea);
+cardTitle.value = localStorage.getItem(cardTitle.id);
+cardPara.value = localStorage.getItem(cardPara.id);
+
+/*---------------- Functions ------------*/
+updateIdea (e) {
+    if(e.target.tagName === "FIGURE") {
+    localStorage.setItem(e.target.id, e.target.value);
+    console.log(e.target.tagName);
+  }
+
 
 saveBtn.addEventListener("click", saveInput)
 titleInput.addEventListener("keyup", enableBtn)
@@ -50,7 +87,7 @@ function saveInput() {
 	console.log(newTitle);
 	var newBody = bodyInput.value;
 	console.log(newBody);
-	ideaCard.innerHTML = 
+	ideaCard.innerHTML += 
 			`<header class="idea-card-header">
 				<img src="images/star.svg" class="idea-card-icons" id="star-icon"/>
 				<img src="images/delete.svg" class="idea-card-icons" id="close-icon"/>
@@ -67,11 +104,13 @@ function saveInput() {
   storeInput();
   clearInputs();
 }
-
-function storeInput(id, title, body) {
+//create another for saveStorage method idea.js//
+function storeInput(id, title, body/*ideaArray*/) {
 	var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
+	ideaArray.push(newIdea) 
 	var stringified = JSON.stringify(newIdea);
-	localStorage.setItem(newIdea.id, stringified);
+	newIdea.saveStorage(ideaArray)
+	// localStorage.setItem(newIdea.id, stringified);
 }
 
 // function retrieveInput()
@@ -90,4 +129,8 @@ function enableBtn() {
 }
 
 function createNewIdeaCard() {}
+
+/*
+pageRefresh(array)
+for each item(param) in an array, create a new card
 
