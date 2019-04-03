@@ -230,7 +230,7 @@ label {
 
 
 .bottom-section {
- grid-area: footer;
- background-color: #eaeaf4;
- height: 55vh;
+  grid-area: footer;
+  background-color: #eaeaf4;
+  height: 55vh;
 }

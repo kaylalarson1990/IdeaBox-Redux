@@ -8,4 +8,8 @@ class Idea {
         //stringify idea and setItem to localStorage
         JSON.stringify({})
       }
-    }
+
+}
+
+
+
