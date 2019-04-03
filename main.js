@@ -39,6 +39,8 @@ ideaCard.classList.add("idea-card")
 /*------------- Event Listeners ----------*/
 
 saveBtn.addEventListener("click", saveInput)
+titleInput.addEventListener("keyup", enableBtn)
+
 
 /*---------------- Functions ------------*/
 
@@ -71,5 +73,9 @@ function storeInput(id, title, body) {
 function clearInputs() {
 	titleInput.value = "";
 	bodyInput.value = "";
+}
+
+function enableBtn() {
+	saveBtn.classList.remove("disabled");
 }
 

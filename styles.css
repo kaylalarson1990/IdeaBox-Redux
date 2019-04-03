@@ -162,6 +162,12 @@ label {
   cursor: pointer;
 }
 
+.disabled {
+  background-color: #eaeaf4;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .idea-card {
  background-color: #ffffff;
  width: 250px;
