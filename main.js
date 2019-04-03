@@ -46,10 +46,11 @@ titleInput.addEventListener("keyup", enableBtn)
 
 function saveInput() {
 	var newTitle = titleInput.value;
+
 	console.log(newTitle);
 	var newBody = bodyInput.value;
 	console.log(newBody);
-	ideaCard.innerHTML = 
+	ideaCard.innerHTML += 
 			`<header class="idea-card-header"><img src="images/star.svg" class="idea-card-icons" id="star-icon"/><img src="images/delete.svg" class="idea-card-icons" id="close-icon"/></header>
         <h2 id="card-title">${newTitle}</h2>
         <p class="idea-card-paragraph" id="card-paragraph">${newBody}</p>
@@ -68,9 +69,9 @@ function storeInput(id, title, body) {
 	localStorage.setItem(newIdea.id, stringified);
 }
 
-function retrieveInput()
-var retrieved =localStorage.getItem(stringified);
-var parsed = JSON.parse(retrieved);
+// function retrieveInput()
+// var retrieved =localStorage.getItem(stringified);
+// var parsed = JSON.parse(retrieved);
 
 
 function clearInputs() {
