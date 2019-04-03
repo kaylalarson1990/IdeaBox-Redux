@@ -73,6 +73,8 @@ li:hover{
   margin-top: 2%;
   border-radius: 5%
 }
+
+
 .side-bar-label {
  color: #BFBFDD;
  font-size: .8em;
@@ -113,7 +115,7 @@ label {
   padding: 1%;
 }
 
-.search-button {
+.btn-search-idea {
  position: absolute;
  width: 30px;
  height: 40px;
@@ -140,8 +142,15 @@ label {
 }
 
 
-#title-text,
-#body-text {
+
+label {
+ font-size: 16px;
+ font-weight: 500;
+ color: #1f1f3b;
+}
+
+#title-input,
+#body-input {
  border-radius: 5px;
  outline: none;
  width: 100%;
@@ -152,11 +161,11 @@ label {
  font-size: 16px;
 }
 
-#body-text  {
+#body-input {
  padding: 50px;
 }
 
-.save-button {
+.btn-save-idea {
   background-color: #1f1f3b;
   color: #ffffff;
   border-radius: 5px;
@@ -167,6 +176,12 @@ label {
   margin-top: 1%;
   margin-bottom: 2%;
   cursor: pointer;
+}
+
+.disabled {
+  background-color: #eaeaf4;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .idea-card {
@@ -223,25 +238,16 @@ label {
 
 #close-icon {
  float: right;
-/*  color: #ffffff;
- border-radius: 5px;
- width: 100%;
- padding: 10px;
- font-size: 20px;
- font-weight: 600;
- margin-top: 10px;
- margin-bottom: 10px;
- cursor: pointer;*/
 }
 
 .downvote-icon {
   margin-top: 2%;
-  margin-left: 10%;
+  margin-left: 20%;
 }
 
 .upvote-icon {
   margin-top: 2%;
-  margin-right: 10%;
+  margin-right: 20%;
 }
 
 
