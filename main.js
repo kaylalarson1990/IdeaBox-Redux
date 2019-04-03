@@ -23,6 +23,7 @@ var ideaContainer = document.querySelector(".bottom-section")
 var ideaCard = document.createElement("div");
 ideaCard.classList.add("idea-card")
 
+var ideas = [];
 
 
 
@@ -46,16 +47,20 @@ titleInput.addEventListener("keyup", enableBtn)
 
 function saveInput() {
 	var newTitle = titleInput.value;
-
 	console.log(newTitle);
 	var newBody = bodyInput.value;
 	console.log(newBody);
-	ideaCard.innerHTML += 
-			`<header class="idea-card-header"><img src="images/star.svg" class="idea-card-icons" id="star-icon"/><img src="images/delete.svg" class="idea-card-icons" id="close-icon"/></header>
+	ideaCard.innerHTML = 
+			`<header class="idea-card-header">
+				<img src="images/star.svg" class="idea-card-icons" id="star-icon"/>
+				<img src="images/delete.svg" class="idea-card-icons" id="close-icon"/>
+			</header>
         <h2 id="card-title">${newTitle}</h2>
         <p class="idea-card-paragraph" id="card-paragraph">${newBody}</p>
-        <div class="idea-card-footer">
-          <img src="images/upvote.svg" class="upvote-icon idea-card-icons" id="upvote-icon"/><p>Quality:<span class="quality" id="quality-type">Swill</span></p><img src="images/downvote.svg" class="downvote-icon idea-card-icons" id="downvote-icon"/>
+      <div class="idea-card-footer">
+          <img src="images/upvote.svg" class="upvote-icon idea-card-icons" id="upvote-icon"/>
+          <p>Quality:<span class="quality" id="quality-type">Swill</span></p>
+          <img src="images/downvote.svg" class="downvote-icon idea-card-icons" id="downvote-icon"/>
       </div>
       `
   ideaContainer.append(ideaCard);
@@ -83,4 +88,6 @@ function clearInputs() {
 function enableBtn() {
 	saveBtn.classList.remove("disabled");
 }
+
+function createNewIdeaCard() {}
 
