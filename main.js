@@ -43,23 +43,33 @@ saveBtn.addEventListener("click", saveInput)
 /*---------------- Functions ------------*/
 
 function saveInput() {
-	ideaCard.innerHTML = `
-        <header class="idea-card-header"><img src="images/star.svg" class="idea-card-icons" id="star-icon"/><img src="images/delete.svg" class="idea-card-icons" id="close-icon"/></header>
+	var newTitle = titleInput.value;
+	// cardTitle.innerText = newTitle;
+	console.log(newTitle);
+	var newBody = bodyInput.value;
+	// cardPara.innerText = newBody;
+	console.log(newBody);
+	ideaCard.innerHTML = 
+			`<header class="idea-card-header"><img src="images/star.svg" class="idea-card-icons" id="star-icon"/><img src="images/delete.svg" class="idea-card-icons" id="close-icon"/></header>
         <h2 id="card-title">${newTitle}</h2>
         <p class="idea-card-paragraph" id="card-paragraph">${newBody}</p>
         <div class="idea-card-footer">
           <img src="images/upvote.svg" class="upvote-icon idea-card-icons" id="upvote-icon"/><p>Quality:<span class="quality" id="quality-type">Swill</span></p><img src="images/downvote.svg" class="downvote-icon idea-card-icons" id="downvote-icon"/>
       </div>
       `
-  var newTitle = titleInput.value;
-	// cardTitle.innerText = newTitle;
-	console.log(newTitle);
-	var newBody = bodyInput.value;
-	// cardPara.innerText = newBody;
-	console.log(newBody);
   ideaContainer.append(ideaCard);
-
+  storeInput();
+  clearInputs();
 }
 
+function storeInput(id, title, body) {
+	var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
+	var stringified = JSON.stringify(newIdea);
+	localStorage.setItem(newIdea.id, stringified);
+}
 
+function clearInputs() {
+	titleInput.value = "";
+	bodyInput.value = "";
+}
 
