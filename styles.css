@@ -253,7 +253,7 @@ label {
 
 
 .bottom-section {
- grid-area: footer;
- background-color: #eaeaf4;
- height: 160vh;
+  grid-area: footer;
+  background-color: #eaeaf4;
+  height: 55vh;
 }
