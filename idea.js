@@ -9,7 +9,17 @@ class Idea {
         JSON.stringify({})
       }
 
-}
+  deleteFromStorate() {
 
+  }
 
+ 	updateIdea() {
+
+ 	}
+
+ 	updateQuality() {
+ 		
+ 	}
+
+ }
 
