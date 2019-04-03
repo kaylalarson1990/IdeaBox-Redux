@@ -46,10 +46,8 @@ titleInput.addEventListener("keyup", enableBtn)
 
 function saveInput() {
 	var newTitle = titleInput.value;
-	// cardTitle.innerText = newTitle;
 	console.log(newTitle);
 	var newBody = bodyInput.value;
-	// cardPara.innerText = newBody;
 	console.log(newBody);
 	ideaCard.innerHTML = 
 			`<header class="idea-card-header"><img src="images/star.svg" class="idea-card-icons" id="star-icon"/><img src="images/delete.svg" class="idea-card-icons" id="close-icon"/></header>
@@ -70,9 +68,15 @@ function storeInput(id, title, body) {
 	localStorage.setItem(newIdea.id, stringified);
 }
 
+function retrieveInput()
+var retrieved =localStorage.getItem(stringified);
+var parsed = JSON.parse(retrieved);
+
+
 function clearInputs() {
 	titleInput.value = "";
 	bodyInput.value = "";
+	saveBtn.classList.add("disabled");
 }
 
 function enableBtn() {
