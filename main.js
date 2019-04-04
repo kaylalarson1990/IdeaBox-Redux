@@ -50,12 +50,8 @@ ideaContainer.addEventListener("click", removeCard);
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
 
-
-
 //search event listener
 // searchInput.addEventListener("keyup", searchForIdeas(ideaArray, searchInput.value));
-
- 
 
 if(ideaArray != []) {
 	pageRefresh(ideaArray);
@@ -71,10 +67,20 @@ function saveInput() {
 }
 
 function removeCard(e) {
-  console.log(e);
-  if(e.target.className === "idea-card-icons") {
+	var targetId = e.target.parentNode.parentNode.getAttribute("data-id");
+	var parsedId = parseInt(targetId);
+	console.log(targetId);
+	// debugger;
+	var findId = ideaArray.find(function(idea) {
+		return idea.id === parsedId;
+	});
+	var findIndex = ideaArray.indexOf(findId);
+	console.log(findId);
+	findId.deleteFromStorage(findIndex);
+	if(e.target.className === "idea-card-icons") {
     e.target.parentElement.parentElement.remove();
   }
+	
 }
 
 function storeInput(id, title, body) {
@@ -87,11 +93,6 @@ function storeInput(id, title, body) {
 
 function createNewIdea(idea) {
 	ideaPlaceholder.classList.add('hidden');
-  // var newTitle = titleInput.value;
-  // console.log(idea.title);
-  // var newBody = bodyInput.value;
-  // console.log(idea.body);
-
   ideaContainer.innerHTML = 
       `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id = "${idea.id}"><header class="idea-card-header">
         <img src="images/star.svg" class="idea-card-icons" id="star-icon"/>
