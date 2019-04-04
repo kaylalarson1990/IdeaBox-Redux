@@ -184,6 +184,17 @@ label {
   opacity: 0.6;
 }
 
+.idea-placeholder {
+  font-weight: 700;
+  color: #1f1f3d;
+  font-size: 3.5em;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
 .idea-card {
  background-color: #ffffff;
  width: 250px;
