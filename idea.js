@@ -4,17 +4,16 @@ class Idea {
     this.title = title;
     this.body = body;
     this.star = false; 
-    // this.quality = quality || 0;
-
-    /* adding cards set to false / targeting false set to true , event click btn filter starred ideas , using a boolean to determine if starred or false , have a function that changes to free*/
+    
   }
   saveToStorage() {
         var stringified = JSON.stringify(ideaArray);
-        localStorage.setItem("ideasSaved", stringified)
+        localStorage.setItem("ideasSaved", stringified);
       }
 
-  deleteFromStorage() {
-    
+  deleteFromStorage(index) {
+    ideaArray.splice(index, 1);
+    this.saveToStorage(ideaArray);
 
   }
 
@@ -32,3 +31,6 @@ class Idea {
 
  }
 
+// this.quality = quality || 0;
+
+    /* adding cards set to false / targeting false set to true , event click btn filter starred ideas , using a boolean to determine if starred or false , have a function that changes to free*/
