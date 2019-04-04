@@ -58,14 +58,28 @@ if(ideaArray != []) {
 
 
 /*---------------- Functions ------------*/
+function saveInput() {
+	storeInput();
+	var item = ideaArray[ideaArray.length - 1]
+	createNewIdea(item);
+  clearInputs();
+}
+
+function storeInput(id, title, body) {
+	var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
+	ideaArray.push(newIdea) 
+	var stringified = JSON.stringify(newIdea);
+	newIdea.saveToStorage(ideaArray);
+}
 
 
 function createNewIdea(idea) {
   // var newTitle = titleInput.value;
-  // console.log(newTitle);
+  // console.log(idea.title);
   // var newBody = bodyInput.value;
-  // console.log(newBody);
-  ideaContainer.innerHTML += 
+  // console.log(idea.body);
+
+  ideaContainer.innerHTML = 
       `<figure class="idea-card" id="idea-card" contenteditable = "true"><header class="idea-card-header">
         <img src="images/star.svg" class="idea-card-icons" id="star-icon"/>
         <img src="images/delete.svg" class="idea-card-icons" id="close-icon"/>
@@ -77,24 +91,8 @@ function createNewIdea(idea) {
           <p>Quality:<span class="quality" id="quality-type">Swill</span></p>
           <img src="images/downvote.svg" class="downvote-icon idea-card-icons" id="downvote-icon"/>
       </div></figure>
-      `
+      ` + ideaContainer.innerHTML;
 }
-
-function saveInput() {
-	createNewIdea();
-  storeInput();
-  clearInputs();
-}
-//create another for saveStorage method idea.js//
-function storeInput(id, title, body) {
-	var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
-	ideaArray.push(newIdea) 
-	var stringified = JSON.stringify(newIdea);
-	newIdea.saveToStorage(ideaArray);
-}
-
-
-
 
 function clearInputs() {
 	titleInput.value = "";
@@ -105,7 +103,6 @@ function clearInputs() {
 function enableBtn() {
 	saveBtn.classList.remove("disabled");
 }
-
 
 
 function pageRefresh(ideaArray) {
