@@ -12,7 +12,7 @@ var searchBtn = document.querySelector("#btn-search");
 var searchInput = document.querySelector("#search-input");
 var ideaCard = document.querySelector("#idea-card");
 var starIcon = document.querySelector("#star-icon");
-var closeIcon = document.querySelector("#close-icon");
+var closeIcon = document.querySelector(".idea-card-icons");
 var upvoteIcon = document.querySelector("#upvote-icon");
 var downvoteIcon = document.querySelector("#downvote-icon");
 var cardTitle = document.querySelector("#card-title");
@@ -44,12 +44,11 @@ var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
 
 /*------------- Event Listeners ----------*/
 
-
-// cardTitle.value = localStorage.getItem(cardTitle.id);
-// cardPara.value = localStorage.getItem(cardPara.id);
-
+ideaContainer.addEventListener("click", removeCard);
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
+
+
  
 
 if(ideaArray != []) {
@@ -63,6 +62,13 @@ function saveInput() {
 	var item = ideaArray[ideaArray.length - 1]
 	createNewIdea(item);
   clearInputs();
+}
+
+function removeCard(e) {
+  console.log(e);
+  if(e.target.className === "idea-card-icons") {
+    e.target.parentElement.parentElement.remove();
+  }
 }
 
 function storeInput(id, title, body) {
@@ -80,7 +86,7 @@ function createNewIdea(idea) {
   // console.log(idea.body);
 
   ideaContainer.innerHTML = 
-      `<figure class="idea-card" id="idea-card" contenteditable = "true"><header class="idea-card-header">
+      `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id = "${idea.id}"><header class="idea-card-header">
         <img src="images/star.svg" class="idea-card-icons" id="star-icon"/>
         <img src="images/delete.svg" class="idea-card-icons" id="close-icon"/>
       </header>
@@ -99,6 +105,7 @@ function clearInputs() {
 	bodyInput.value = "";
 	saveBtn.classList.add("disabled");
 }
+
 
 function enableBtn() {
 	saveBtn.classList.remove("disabled");

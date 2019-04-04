@@ -9,7 +9,7 @@ class Idea {
         localStorage.setItem("ideasSaved", stringified)
       }
   deleteFromStorage() {
-  		//localStorage.removeItem(this.id)//
+    
 
   }
 
