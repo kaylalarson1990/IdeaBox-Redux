@@ -141,9 +141,7 @@ label {
  grid-area: main;
 }
 
-.idea-box {
- flex-direction: column;
-}
+
 
 label {
  font-size: 16px;
@@ -205,12 +203,17 @@ label {
  justify-content: space-between;
  font-size: 12px;
  margin: 50px;
+ width:250px;
 }
 
 .idea-card h2 {
  font-size: 14px;
  text-align: left;
  margin-left: 2%;
+}
+
+.idea-box {
+ flex-direction: column;
 }
 
 .idea-card-header {
@@ -229,8 +232,6 @@ label {
  height: 20%;
  justify-content: space-between;
 }
-
-
 
 .bottom-section {
   grid-area: footer;
