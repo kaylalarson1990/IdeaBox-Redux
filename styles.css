@@ -100,6 +100,10 @@ label {
  color: #1f1f3b;
 }
 
+#star-icon:hover {
+  fill: orange;
+}
+
 .searchterm {
   border: 1px solid lightgrey;
   outline: none;
@@ -140,8 +144,6 @@ label {
 .idea-box {
  flex-direction: column;
 }
-
-
 
 label {
  font-size: 16px;
