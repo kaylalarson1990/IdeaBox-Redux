@@ -135,9 +135,11 @@ function createNewIdea(idea) {
         <h2 id="card-title" contenteditable = "true">${idea.title}</h2>
         <p class="idea-card-paragraph" id="card-paragraph" contenteditable = "true">${idea.body}</p>
       <div class="idea-card-footer">
-          <img src="images/upvote.svg" class="upvote-icon idea-card-icons" id="upvote-icon"/>
+
+      <input type="image" src="images/upvote.svg" class="upvote-icon idea-card-icons" id="upvote-icon" />
           <p>Quality:<span class="quality" id="quality-type">Swill</span></p>
-          <img src="images/downvote.svg" class="downvote-icon idea-card-icons" id="downvote-icon"/>
+          <input type="image" src="images/downvote.svg"
+          class="downvote-icon idea-card-icons" id="downvote-icon"/>
       </div></figure>
       ` + ideaContainer.innerHTML;
 }
