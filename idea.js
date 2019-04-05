@@ -12,8 +12,8 @@ class Idea {
       }
 
   deleteFromStorage(index) {
-    ideaArray.splice(index, 1);
-    this.saveToStorage(ideaArray);
+    // ideaArray.splice(findIndex, 1);
+    // this.saveToStorage(ideaArray);
 
   }
 

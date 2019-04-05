@@ -36,7 +36,7 @@ var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
 
 
 
-/*------------ Input Var ----`---------*/
+/*------------ Input Var -------------*/
 
 /*------------- Output Var ------------*/
 
@@ -49,7 +49,7 @@ var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
 /*------------- Event Listeners ----------*/
 
 
-ideaContainer.addEventListener("click", removeCard);
+ideaContainer.addEventListener("click", removeCard); 
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
 // starBtn.addEventListener("click", starIdea)
@@ -65,7 +65,6 @@ titleInput.addEventListener("keyup", enableBtn);
 if(ideaArray != []) {
 	pageRefresh(ideaArray);
 }
-
 
 /*---------------- Functions ------------*/
 // function upVoteQuality() {
@@ -96,10 +95,23 @@ function toggleStar() {
 
 
 function removeCard(e) {
-  if(e.target.className === "idea-card-icons close") {
+  if(e.target.className === "idea-card-icons") {
     e.target.parentElement.parentElement.remove();
   }
+
+  var targetId = JSON.parse(e.target.parentElement.parentElement.dataset.id);
+  var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
+	var itemIndex = parsedItems.findIndex(function(idea) {
+		 return idea.id === targetId;
+	});
+
+   parsedItems.splice(itemIndex, 1);
+
+  localStorage.clear();
+  localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
+
 }
+
 
 function storeInput(id, title, body) {
 	var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
@@ -107,7 +119,6 @@ function storeInput(id, title, body) {
 	var stringified = JSON.stringify(newIdea);
 	newIdea.saveToStorage(ideaArray);
 }
-
 
 function createNewIdea(idea) {
 	ideaPlaceholder.classList.add('hidden');
@@ -117,7 +128,7 @@ function createNewIdea(idea) {
   // console.log(idea.body);
 
   ideaContainer.innerHTML = 
-      `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id = "${idea.id}"><header class="idea-card-header">
+      `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id="${idea.id}"><header class="idea-card-header">
         <img src="images/star.svg" class="idea-card-icons" id="star-icon"/>
         <img src="images/delete.svg" class="idea-card-icons close" id="close-icon"/>
       </header>
@@ -141,7 +152,6 @@ function clearInputs() {
 function enableBtn() {
 	saveBtn.classList.remove("disabled");
 }
-
 
 function pageRefresh(ideaArray) {
 ideaArray.forEach(function(item) {
