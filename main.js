@@ -33,7 +33,7 @@ var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
 
 
 
-/*------------ Input Var ----`---------*/
+/*------------ Input Var -------------*/
 
 /*------------- Output Var ------------*/
 
@@ -46,7 +46,7 @@ var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
 /*------------- Event Listeners ----------*/
 
 
-ideaContainer.addEventListener("click", removeCard);
+ideaContainer.addEventListener("click", removeCard); 
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
 
@@ -57,7 +57,6 @@ if(ideaArray != []) {
 	pageRefresh(ideaArray);
 }
 
-
 /*---------------- Functions ------------*/
 function saveInput() {
 	storeInput();
@@ -67,21 +66,37 @@ function saveInput() {
 }
 
 function removeCard(e) {
-	var targetId = e.target.parentNode.parentNode.getAttribute("data-id");
-	var parsedId = parseInt(targetId);
-	console.log(targetId);
-	// debugger;
-	var findId = ideaArray.find(function(idea) {
-		return idea.id === parsedId;
-	});
-	var findIndex = ideaArray.indexOf(findId);
-	console.log(findId);
-	findId.deleteFromStorage(findIndex);
-	if(e.target.className === "idea-card-icons") {
+
+  if(e.target.className === "idea-card-icons") {
     e.target.parentElement.parentElement.remove();
   }
-	
+    // debugger;
+  // var targetId = e.target.parentNode.parentNode.dataset("data-id");
+
+  var targetId = JSON.parse(e.target.parentElement.parentElement.dataset.id);
+  console.log(targetId);
+
+  // var parsedId = parseInt(targetId);
+  // console.log(parsedId);
+
+  var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
+  console.log(parsedItems);
+
+	 var itemIndex = parsedItems.findIndex(function(idea) {
+		 return idea.id === targetId;
+
+	});
+   console.log(itemIndex)
+   parsedItems.splice(itemIndex, 1);
+
+  localStorage.clear();
+  localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
+
 }
+
+
+
+
 
 function storeInput(id, title, body) {
 	var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
@@ -90,11 +105,10 @@ function storeInput(id, title, body) {
 	newIdea.saveToStorage(ideaArray);
 }
 
-
 function createNewIdea(idea) {
 	ideaPlaceholder.classList.add('hidden');
   ideaContainer.innerHTML = 
-      `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id = "${idea.id}"><header class="idea-card-header">
+      `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id="${idea.id}"><header class="idea-card-header">
         <img src="images/star.svg" class="idea-card-icons" id="star-icon"/>
         <img src="images/delete.svg" class="idea-card-icons" id="close-icon"/>
       </header>
@@ -118,7 +132,6 @@ function clearInputs() {
 function enableBtn() {
 	saveBtn.classList.remove("disabled");
 }
-
 
 function pageRefresh(ideaArray) {
 ideaArray.forEach(function(item) {
