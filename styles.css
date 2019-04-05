@@ -202,7 +202,7 @@ label {
  flex-flow: column;
  justify-content: space-between;
  font-size: 12px;
- margin: 50px;
+ margin: 20px;
  width:250px;
 }
 
@@ -237,4 +237,5 @@ label {
   grid-area: footer;
   background-color: #eaeaf4;
   height: 55vh;
+  display:flex;
 }
