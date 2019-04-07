@@ -95,7 +95,7 @@ function toggleStar() {
 
 
 function removeCard(e) {
-  if(e.target.className === "idea-card-icons") {
+  if(e.target.className === "icons__card--remove") {
     e.target.parentElement.parentElement.remove();
   }
 
@@ -129,17 +129,17 @@ function createNewIdea(idea) {
 
   ideaContainer.innerHTML = 
       `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id="${idea.id}"><header class="idea-card-header">
-        <img src="images/star.svg" class="idea-card-icons" id="star-icon"/>
-        <img src="images/delete.svg" class="idea-card-icons close" id="close-icon"/>
+        <input type="image" src="images/star.svg" class="icons__card--star" width=35px id="star-icon"/>
+        <input type="image" src="images/delete.svg" class="icons__card--remove" width=35px id="close-icon"/>
       </header>
         <h2 id="card-title" contenteditable = "true">${idea.title}</h2>
         <p class="idea-card-paragraph" id="card-paragraph" contenteditable = "true">${idea.body}</p>
       <div class="idea-card-footer">
 
-      <input type="image" src="images/upvote.svg" class="upvote-icon idea-card-icons" id="upvote-icon" />
+      <input type="image" src="images/upvote.svg" class="icons__card--upvote" width=35px id="upvote-icon"  />
           <p>Quality:<span class="quality" id="quality-type">Swill</span></p>
           <input type="image" src="images/downvote.svg"
-          class="downvote-icon idea-card-icons" id="downvote-icon"/>
+          class="icons__card--downvote" width=35px id="downvote-icon"/>
       </div></figure>
       ` + ideaContainer.innerHTML;
 }
