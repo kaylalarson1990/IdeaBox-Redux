@@ -31,13 +31,8 @@ var starBtn = document.querySelector("#star-icon")
 
 //Idea Array//
 var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
-
-
-
-
-
+var postIdeaClass = new Idea()
 /*------------ Input Var -------------*/
-
 /*------------- Output Var ------------*/
 
 /*------------- Buttons --------------*/ 
@@ -79,6 +74,10 @@ if(ideaArray != []) {
 
 // };
 
+var makeActive = function(elem){
+    elem.classList.toggle("is-active");
+}
+
 
 function saveInput() {
 	storeInput();
@@ -87,10 +86,11 @@ function saveInput() {
   clearInputs();
 }
 
-function toggleStar() {
-  if (e.target.id ="#star.icon") {
-    ideaCardHeader.classList.add()
-  }
+function storeInput(id, title, body,star,quality) {
+  var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
+  ideaArray.push(newIdea) 
+  var stringified = JSON.stringify(newIdea);
+  newIdea.saveToStorage(ideaArray);
 }
 
 
@@ -98,27 +98,21 @@ function removeCard(e) {
   if(e.target.className === "icons__card--remove") {
     e.target.parentElement.parentElement.remove();
   }
+  var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
+  postIdeaClass.deleteFromStorage(targetId)
+}; 
 
-  var targetId = JSON.parse(e.target.parentElement.parentElement.dataset.id);
-  var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
-	var itemIndex = parsedItems.findIndex(function(idea) {
-		 return idea.id === targetId;
-	});
 
-   parsedItems.splice(itemIndex, 1);
-
-  localStorage.clear();
-  localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
-
+function starIdea(e) {
+  if (e.target.className === "icons__card-star") {
+    e.target.class
+  }
+  var targetStar = parseInt(e.target.parentElement.parentElement.dataset.id)
+  postIdeaClass.updateStar(targetId)
 }
 
 
-function storeInput(id, title, body) {
-	var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
-	ideaArray.push(newIdea) 
-	var stringified = JSON.stringify(newIdea);
-	newIdea.saveToStorage(ideaArray);
-}
+// take anon object , use for loop to pass parameters back into idea Class 
 
 function createNewIdea(idea) {
 	ideaPlaceholder.classList.add('hidden');
