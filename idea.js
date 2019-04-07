@@ -22,7 +22,7 @@ class Idea {
    parsedItems.splice(itemIndex, 1);
   localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
   ;
-    console.log('stuff')
+    console.log('postIdeaClass')
   }
     // ideaArray.splice(findIndex, 1);
     // this.saveToStorage(ideaArray);

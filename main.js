@@ -31,7 +31,7 @@ var starBtn = document.querySelector("#star-icon")
 
 //Idea Array//
 var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
-
+var postIdeaClass = new Idea()
 /*------------ Input Var -------------*/
 /*------------- Output Var ------------*/
 
@@ -100,8 +100,7 @@ function removeCard(e) {
   }
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
   console.log(targetId)
-  var stuff = new Idea()
-  stuff.deleteFromStorage(targetId)
+  postIdeaClass.deleteFromStorage(targetId)
 }; 
 
 
