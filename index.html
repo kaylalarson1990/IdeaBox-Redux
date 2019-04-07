@@ -6,25 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
  </head>
 <body>
   <main id="main">
     <aside class="side-bar">
-      <h1>IdeaBox Redux</h1>
-      <hr/>
-      <label class="side-bar-label">Filter Starred Ideas</label>
-      <button class="side-bar-button" id="starred-ideas-btn">Show Starred Ideas</button>
-      <hr/>
-      <label class="side-bar-label">Filter by Quality</label>
-      <ul>
-        <li id="swill-filter">Swill</li>
-        <li id="plausible-filter">Plausible</li>
-        <li id="genius-filter">Genius</li>
-      </ul>
-      <label class="side-bar-label">New Quality</label>
-      <input type = "text" class="side-bar-input" id="new-quality-input">
-      <button class="side-bar-button" id="add-quality-btn">Add New Quality</button>
-      <hr/>
+      <h1 class="Navbar__Link Navbar__Link-brand">IdeaBox Redux</h1>
+      <div class="Navbar__Link Navbar__Link-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav class="Navbar__Items">
+      <!-- <nav class="hamburger-menu"> -->
+      <div class="Navbar__Link">
+        <hr/>
+        <label class="side-bar-label">Filter Starred Ideas</label>
+        <button class="side-bar-button" id="starred-ideas-btn">Show Starred Ideas</button>
+      </div>
+      <div class="Navbar__Link">
+        <hr/>
+        <label class="side-bar-label">Filter by Quality</label>
+        <ul>
+          <li id="swill-filter">Swill</li>
+          <li id="plausible-filter">Plausible</li>
+          <li id="genius-filter">Genius</li>
+        </ul>
+      </div>
+      <div class="Navbar__Link">
+        <label class="side-bar-label">New Quality</label>
+        <input type = "text" class="side-bar-input" id="new-quality-input">
+        <button class="side-bar-button" id="add-quality-btn">Add New Quality</button>
+        <hr/>
+      </div>
+      </nav>
+    </div>
     </aside>
     <section class="top-section">
       <figure class="idea-box">

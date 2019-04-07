@@ -46,15 +46,22 @@ var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
 /*------------- Event Listeners ----------*/
 
 
-ideaContainer.addEventListener("click", removeCard); 
+ideaContainer.addEventListener("click", function(e) {
+  if(e.target.className === "idea-card-icons") {
+    removeCard(e);
+  }
+})
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
 
 //search event listener
 // searchInput.addEventListener("keyup", searchForIdeas(ideaArray, searchInput.value));
-
 if(ideaArray != []) {
 	pageRefresh(ideaArray);
+}
+
+if(ideaArray == []) {
+  ideaPlaceholder.classList.remove("hidden");
 }
 
 /*---------------- Functions ------------*/
@@ -66,36 +73,41 @@ function saveInput() {
 }
 
 function removeCard(e) {
-
-  if(e.target.className === "idea-card-icons") {
-    e.target.parentElement.parentElement.remove();
-  }
-    // debugger;
-  // var targetId = e.target.parentNode.parentNode.dataset("data-id");
-
+  e.target.parentElement.parentElement.remove();
   var targetId = JSON.parse(e.target.parentElement.parentElement.dataset.id);
-  console.log(targetId);
-
-  // var parsedId = parseInt(targetId);
-  // console.log(parsedId);
-
-  var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
-  console.log(parsedItems);
-
-	 var itemIndex = parsedItems.findIndex(function(idea) {
-		 return idea.id === targetId;
-
-	});
-   console.log(itemIndex)
-   parsedItems.splice(itemIndex, 1);
-
+  var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+  var itemIndex = parsedItems.findIndex(function(idea) {
+     return idea.id === targetId;
+  });
+  parsedItems.splice(itemIndex, 1);
   localStorage.clear();
   localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
 
 }
 
+ideaContainer.addEventListener("click", updateCard);
 
+function updateCard(e) {
+  if(e.target.className === "idea-card-paragraph") {
+    var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+    console.log(parsedItems)
+    var targetParent = e.target.parentElement.parentElement;
+    console.log(targetParent);
+    var targetId = JSON.parse(targetParent.dataset.id);
+    console.log(targetId)
+    for(var i=0; i < parsedItems.length; i++) {
+      if(parsedItems[i].id === targetId) {
+        var newIdea = parsedItems[i];
+        console.log(newIdea);
+        newIdea.body = e.target.textContent;
 
+        parsedItems.splice(i, 1, newIdea);
+        localStorage.removeItem("ideasSaved");
+        localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
+      }
+    }
+  }
+}
 
 
 function storeInput(id, title, body) {
@@ -106,9 +118,9 @@ function storeInput(id, title, body) {
 }
 
 function createNewIdea(idea) {
-	ideaPlaceholder.classList.add('hidden');
+	ideaPlaceholder.classList.add("hidden");
   ideaContainer.innerHTML = 
-      `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id="${idea.id}"><header class="idea-card-header">
+      `<figure class="idea-card" id="idea-card" data-id="${idea.id}"><header class="idea-card-header">
         <img src="images/star.svg" class="idea-card-icons" id="star-icon"/>
         <img src="images/delete.svg" class="idea-card-icons" id="close-icon"/>
       </header>
@@ -128,7 +140,6 @@ function clearInputs() {
 	saveBtn.classList.add("disabled");
 }
 
-
 function enableBtn() {
 	saveBtn.classList.remove("disabled");
 }
@@ -139,6 +150,13 @@ ideaArray.forEach(function(item) {
 	})
 }
 
+
+function classToggle() {
+  var navs = document.querySelectorAll(".Navbar__Items")
+  navs.forEach(nav => nav.classList.toggle("Navbar__ToggleShow"))
+}
+document.querySelector(".Navbar__Link-toggle")
+.addEventListener("click", classToggle);
 //search function
 
 // function searchForIdeas(array, query) {

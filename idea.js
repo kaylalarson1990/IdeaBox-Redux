@@ -15,8 +15,8 @@ class Idea {
 
   }
 
- 	updateIdea() {
-
+ 	updateIdea(title, body) {
+    
  	}
 
  	updateQuality() {
