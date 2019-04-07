@@ -12,10 +12,9 @@ class Idea {
         localStorage.setItem("ideasSaved", stringified);
   }
 
-  deleteFromStorage(targetId) {
-    var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
-  
-    var itemIndex = parsedItems.findIndex(function(idea) {
+deleteFromStorage(targetId) {
+  var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
+  var itemIndex = parsedItems.findIndex(function(idea) {
      return idea.id === targetId;
   });
 
@@ -29,7 +28,14 @@ class Idea {
 
 
 //on page reload parsing all objects back into class Idea 
- updateStar() {
+ updateStar(targetStar) {
+  var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
+  var itemIndex = parsedItems.findIndex(function(idea) {
+     return idea.id === targetId;
+  });
+
+   parsedItems.splice(itemIndex, 1);
+  localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
 // pass the method in as an argument in the function 
  };
 
@@ -38,6 +44,8 @@ class Idea {
  	}
 
  	updateQuality() {
+
+    ///global array of Quality 
 }
 }
 // as written cant take stringified objects and apply Idea methods to them, need to rewrite to be able to use class Idea methods. 

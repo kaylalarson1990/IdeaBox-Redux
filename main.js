@@ -99,9 +99,17 @@ function removeCard(e) {
     e.target.parentElement.parentElement.remove();
   }
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
-  console.log(targetId)
   postIdeaClass.deleteFromStorage(targetId)
 }; 
+
+
+function starIdea(e) {
+  if (e.target.className === "icons__card-star") {
+    e.target.class
+  }
+  var targetStar = parseInt(e.target.parentElement.parentElement.dataset.id)
+  postIdeaClass.updateStar(targetId)
+}
 
 
 // take anon object , use for loop to pass parameters back into idea Class 
