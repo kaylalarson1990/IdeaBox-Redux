@@ -9,7 +9,7 @@ class Idea {
         localStorage.setItem("ideasSaved", stringified);
       }
 
-  deleteFromStorage(index) {
+  deleteFromStorage(targetId) {
     // ideaArray.splice(findIndex, 1);
     // this.saveToStorage(ideaArray);
 

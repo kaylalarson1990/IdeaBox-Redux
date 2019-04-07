@@ -53,6 +53,8 @@ ideaContainer.addEventListener("click", function(e) {
 })
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
+ideaContainer.addEventListener("mouseout", updateCard);
+
 
 //search event listener
 // searchInput.addEventListener("keyup", searchForIdeas(ideaArray, searchInput.value));
@@ -75,6 +77,7 @@ function saveInput() {
 function removeCard(e) {
   e.target.parentElement.parentElement.remove();
   var targetId = JSON.parse(e.target.parentElement.parentElement.dataset.id);
+  debugger;
   var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
   var itemIndex = parsedItems.findIndex(function(idea) {
      return idea.id === targetId;
@@ -85,22 +88,16 @@ function removeCard(e) {
 
 }
 
-ideaContainer.addEventListener("click", updateCard);
 
 function updateCard(e) {
   if(e.target.className === "idea-card-paragraph") {
     var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
-    console.log(parsedItems)
-    var targetParent = e.target.parentElement.parentElement;
-    console.log(targetParent);
+    var targetParent = e.target.parentElement;
     var targetId = JSON.parse(targetParent.dataset.id);
-    console.log(targetId)
     for(var i=0; i < parsedItems.length; i++) {
       if(parsedItems[i].id === targetId) {
         var newIdea = parsedItems[i];
-        console.log(newIdea);
         newIdea.body = e.target.textContent;
-
         parsedItems.splice(i, 1, newIdea);
         localStorage.removeItem("ideasSaved");
         localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
