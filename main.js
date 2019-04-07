@@ -45,7 +45,7 @@ var postIdeaClass = new Idea()
 
 
 ideaContainer.addEventListener("click", function(e) {
-  if(e.target.className === "idea-card-icons") {
+  if(e.target.className === "icons__card--remove") {
     removeCard(e);
   }
 })
@@ -105,9 +105,7 @@ function updateCard(e) {
 
 
 function removeCard(e) {
-  if(e.target.className === "icons__card--remove") {
     e.target.parentElement.parentElement.remove();
-  }
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
   postIdeaClass.deleteFromStorage(targetId);
 }; 
