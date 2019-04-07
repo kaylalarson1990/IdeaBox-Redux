@@ -17,14 +17,11 @@ deleteFromStorage(targetId) {
   var itemIndex = parsedItems.findIndex(function(idea) {
      return idea.id === targetId;
   });
-
-   parsedItems.splice(itemIndex, 1);
+  parsedItems.splice(itemIndex, 1);
   localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
   ;
-    console.log('postIdeaClass')
-  }
-    // ideaArray.splice(findIndex, 1);
-    // this.saveToStorage(ideaArray);
+}
+
 
 
 //on page reload parsing all objects back into class Idea 
@@ -39,8 +36,8 @@ deleteFromStorage(targetId) {
 // pass the method in as an argument in the function 
  };
 
- 	updateIdea() {
-
+ 	updateIdea(title, body) {
+    
  	}
 
  	updateQuality() {

@@ -64,6 +64,7 @@ li:hover{
   border-left: 4px solid #f58e72;
 }
 
+
 .side-bar-button {
   background-color: #5356A5;
   color: #E9E9F3;
@@ -92,7 +93,17 @@ li:hover{
   font-size: 16px;
 }
 
+/*.Navbar__Items {
+  display: flex;
+}
 
+.Navbar__Link {
+  padding-left: 8px;
+}*/
+
+.Navbar__Link-toggle {
+  display: none;
+}
 
 /* ------- top section ---------- */
 
@@ -140,7 +151,6 @@ label {
  justify-content: center;
  grid-area: main;
 }
-
 
 
 label {
@@ -240,4 +250,48 @@ label {
   display:flex;
   padding:10px;
   flex-wrap:wrap;
+}
+
+/* ------- first media query ---------- */
+@media screen and (max-width: 920px) {
+  
+  main {
+    display: block;
+  }
+
+  aside h1 {
+    display: flex;
+    justify-content: center;
+}
+
+  .Navbar__Link-toggle {
+    align-items: center;
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 10px;
+  }
+
+  .Navbar__Items,
+  .Navbar {
+    flex-direction: column;
+  }
+
+  .Navbar__Items {
+    display:none;
+  }
+
+  .Navbar__Items--right {
+    margin-left:0;
+  }
+
+  .Navbar__ToggleShow {
+    display: flex;
+  }
+
+  hr {
+    display: none;
+  }
+
 }

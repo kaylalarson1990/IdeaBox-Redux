@@ -44,9 +44,15 @@ var postIdeaClass = new Idea()
 /*------------- Event Listeners ----------*/
 
 
-ideaContainer.addEventListener("click", removeCard); 
+ideaContainer.addEventListener("click", function(e) {
+  if(e.target.className === "idea-card-icons") {
+    removeCard(e);
+  }
+})
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
+ideaContainer.addEventListener("mouseout", updateCard);
+
 // starBtn.addEventListener("click", starIdea)
 // downVoteBtn.addEventListener("click", );
 // upVoteBtn.addEventListener("click", );
@@ -55,30 +61,16 @@ titleInput.addEventListener("keyup", enableBtn);
 
 //search event listener
 // searchInput.addEventListener("keyup", searchForIdeas(ideaArray, searchInput.value));
- 
 
 if(ideaArray != []) {
 	pageRefresh(ideaArray);
 }
 
-/*---------------- Functions ------------*/
-// function upVoteQuality() {
-
-// };
-
-// function downVoteQuality() {
-
-// };
-
-// function starIdea() {
-
-// };
-
-var makeActive = function(elem){
-    elem.classList.toggle("is-active");
+if(ideaArray == []) {
+  ideaPlaceholder.classList.remove("hidden");
 }
 
-
+/*---------------- Functions ------------*/
 function saveInput() {
 	storeInput();
 	var item = ideaArray[ideaArray.length - 1]
@@ -94,12 +86,30 @@ function storeInput(id, title, body,star,quality) {
 }
 
 
+function updateCard(e) {
+  if(e.target.className === "idea-card-paragraph") {
+    var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+    var targetParent = e.target.parentElement;
+    var targetId = JSON.parse(targetParent.dataset.id);
+    for(var i=0; i < parsedItems.length; i++) {
+      if(parsedItems[i].id === targetId) {
+        var newIdea = parsedItems[i];
+        newIdea.body = e.target.textContent;
+        parsedItems.splice(i, 1, newIdea);
+        localStorage.removeItem("ideasSaved");
+        localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
+      }
+    }
+  }
+}
+
+
 function removeCard(e) {
   if(e.target.className === "icons__card--remove") {
     e.target.parentElement.parentElement.remove();
   }
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
-  postIdeaClass.deleteFromStorage(targetId)
+  postIdeaClass.deleteFromStorage(targetId);
 }; 
 
 
@@ -115,21 +125,16 @@ function starIdea(e) {
 // take anon object , use for loop to pass parameters back into idea Class 
 
 function createNewIdea(idea) {
-	ideaPlaceholder.classList.add('hidden');
-  // var newTitle = titleInput.value;
-  // console.log(idea.title);
-  // var newBody = bodyInput.value;
-  // console.log(idea.body);
 
+	ideaPlaceholder.classList.add("hidden");
   ideaContainer.innerHTML = 
-      `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id="${idea.id}"><header class="idea-card-header">
+      `<figure class="idea-card" id="idea-card" data-id="${idea.id}"><header class="idea-card-header">
         <input type="image" src="images/star.svg" class="icons__card--star" width=35px id="star-icon"/>
         <input type="image" src="images/delete.svg" class="icons__card--remove" width=35px id="close-icon"/>
       </header>
         <h2 id="card-title" contenteditable = "true">${idea.title}</h2>
         <p class="idea-card-paragraph" id="card-paragraph" contenteditable = "true">${idea.body}</p>
       <div class="idea-card-footer">
-
       <input type="image" src="images/upvote.svg" class="icons__card--upvote" width=35px id="upvote-icon"  />
           <p>Quality:<span class="quality" id="quality-type">Swill</span></p>
           <input type="image" src="images/downvote.svg"
@@ -144,7 +149,6 @@ function clearInputs() {
 	saveBtn.classList.add("disabled");
 }
 
-
 function enableBtn() {
 	saveBtn.classList.remove("disabled");
 }
@@ -155,7 +159,14 @@ ideaArray.forEach(function(item) {
 	})
 }
 
+function classToggle() {
+  var navs = document.querySelectorAll(".Navbar__Items")
+  navs.forEach(nav => nav.classList.toggle("Navbar__ToggleShow"))
+}
+document.querySelector(".Navbar__Link-toggle")
+.addEventListener("click", classToggle);
 
+  
 //search function
 
 // function searchForIdeas(array, query) {
