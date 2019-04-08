@@ -142,7 +142,6 @@ label {
 }
 
 
-
 label {
  font-size: 16px;
  font-weight: 500;
@@ -184,6 +183,8 @@ label {
   opacity: 0.6;
 }
 
+/* ------- bottom section ---------- */
+
 .idea-placeholder {
   font-weight: 700;
   color: #1f1f3d;
@@ -203,7 +204,8 @@ label {
  flex-flow: column;
  justify-content: center;
  font-size: 12px;
- margin: 50px;
+ margin: 10px;
+ border: solid 1px #1f1f3b;
 }
 
 .idea-card h2 {
@@ -214,6 +216,7 @@ label {
 
 .idea-card-paragraph {
   margin-left: 2%;
+  height: 120px;
 }
 
 .idea-card-footer {
@@ -264,5 +267,7 @@ label {
 .bottom-section {
   grid-area: footer;
   background-color: #eaeaf4;
-  height: 55vh;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
 }

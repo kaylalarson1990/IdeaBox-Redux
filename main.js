@@ -50,8 +50,11 @@ ideaContainer.addEventListener("click", removeCard);
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
 
-//search event listener
-searchInput.addEventListener("input", searchForIdeas(searchInput.value));
+ searchInput.addEventListener("keyup", function() {
+ 	console.log(searchInput.innerText)
+ 	searchForIdeas(searchInput.value);
+ 	event.preventDefault();
+ });
 
 if(ideaArray != []) {
 	pageRefresh(ideaArray);
@@ -75,7 +78,10 @@ function removeCard(e) {
 	var findId = ideaArray.find(function(idea) {
 		return idea.id === parsedId;
 	});
+
 	var findIndex = ideaArray.indexOf(findId);
+	console.log(findId);
+
 	findId.deleteFromStorage(findIndex);
 	if(e.target.className === "idea-card-icons") {
     e.target.parentElement.parentElement.remove();
@@ -125,19 +131,20 @@ ideaArray.forEach(function(item) {
 	})
 }
 
-//search function
-//query search input, 
 function searchForIdeas(query) {
-	var filterIdeas = searchInput.value.toLowerCase();
-	for(var i = 0; i < ideaArray.length; i++) {
-		var getIdeaContent = ideaArray[i].getElementsByClassName("idea-card")[0];
-		var textValue = getIdeaContent.textContent || getIdeaContent.innerText;
-		if(textValue.toLowerCase().indexOf(filterIdeas) > -1) {
-			getIdeaContent[i].style.display = " ";
+	query = query.toLowerCase();
+	var body;
+	var title;
+	var ideaCards = document.getElementsByClassName("idea-card");
+	for(var i = 0; i < ideaCards.length; i++) {
+		body = ideaCards[i].querySelector("#card-paragraph").innerText;
+		title = ideaCards[i].querySelector("#card-title").innerText;
+		if ((body.toLowerCase().indexOf(query) > -1) || (title.toLowerCase().indexOf(query) > -1)){
+			console.log(body, title);
+			ideaCards[i].style.display = "";
 		} else {
-			getIdeaContent[i].style.display = "none";
+			ideaCards[i].style.display = "none";
 		}
+
 	}
 }
-
-
