@@ -14,6 +14,8 @@ class Idea {
 
 deleteFromStorage(targetId) {
   var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
+  // var ideaToDelete = new Idea(findId.id, findId.title, findId.body);
+  // findId.deleteFromStorage(findIndex);
   var itemIndex = parsedItems.findIndex(function(idea) {
      return idea.id === targetId;
   });
@@ -21,7 +23,6 @@ deleteFromStorage(targetId) {
   localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
   ;
 }
-
 
 
 //on page reload parsing all objects back into class Idea 
@@ -37,6 +38,9 @@ deleteFromStorage(targetId) {
  };
 
  	updateIdea(title, body) {
+    
+
+
     
  	}
 
