@@ -75,7 +75,6 @@ li:hover{
   font-size: 16px;
   margin-left: 5%;
   margin-top: 2%;
-  border-radius: 5%
 }
 
 
@@ -253,7 +252,7 @@ label {
 }
 
 /* ------- first media query ---------- */
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 850px) {
   
   main {
     display: block;
@@ -262,6 +261,7 @@ label {
   aside h1 {
     display: flex;
     justify-content: center;
+    font-size: 24px;
 }
 
   .Navbar__Link-toggle {
@@ -271,6 +271,7 @@ label {
     cursor: pointer;
     margin-left: 10px;
     padding: 10px;
+    font-size: 30px;
   }
 
   .Navbar__Items,
@@ -292,6 +293,28 @@ label {
 
   hr {
     display: none;
+  }
+
+  ul {
+    margin: 0;
+  }
+
+  .side-bar-button {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .side-bar-label {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .side-bar-input {
+    width: 90%;
+    margin: 0 0 0 5%;
   }
 
 }

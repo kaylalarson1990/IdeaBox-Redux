@@ -48,10 +48,21 @@ ideaContainer.addEventListener("click", function(e) {
   if(e.target.className === "icons__card--remove") {
     removeCard(e);
   }
-})
+});
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
-ideaContainer.addEventListener("mouseout", updateCard);
+ideaContainer.addEventListener("mouseout", function(e) {
+  if(e.target.className === "idea-card-paragraph") {
+    updateBody(e);
+  }
+});
+ideaContainer.addEventListener("mouseout", function(e) {
+  if(e.target.className === "idea-card-title") {
+    console.log("updating")
+    updateTitle(e);
+  }
+})
+
 
 // starBtn.addEventListener("click", starIdea)
 // downVoteBtn.addEventListener("click", );
@@ -86,8 +97,7 @@ function storeInput(id, title, body,star,quality) {
 }
 
 
-function updateCard(e) {
-  if(e.target.className === "idea-card-paragraph") {
+function updateBody(e) {
     var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
     var targetParent = e.target.parentElement;
     var targetId = JSON.parse(targetParent.dataset.id);
@@ -98,14 +108,30 @@ function updateCard(e) {
         parsedItems.splice(i, 1, newIdea);
         localStorage.removeItem("ideasSaved");
         localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
-      }
+    }
+  }
+}
+
+function updateTitle(e) {
+    var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+    var targetParent = e.target.parentElement;
+    console.log(targetParent)
+    var targetId = JSON.parse(targetParent.dataset.id);
+    console.log(targetId);
+    for(var i=0; i < parsedItems.length; i++) {
+      if(parsedItems[i].id === targetId) {
+        var newIdea = parsedItems[i];
+        newIdea.title = e.target.textContent;
+        parsedItems.splice(i, 1, newIdea);
+        localStorage.removeItem("ideasSaved");
+        localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
     }
   }
 }
 
 
 function removeCard(e) {
-    e.target.parentElement.parentElement.remove();
+  e.target.parentElement.parentElement.remove();
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
   postIdeaClass.deleteFromStorage(targetId);
 }; 
@@ -123,14 +149,13 @@ function starIdea(e) {
 // take anon object , use for loop to pass parameters back into idea Class 
 
 function createNewIdea(idea) {
-
 	ideaPlaceholder.classList.add("hidden");
   ideaContainer.innerHTML = 
       `<figure class="idea-card" id="idea-card" data-id="${idea.id}"><header class="idea-card-header">
         <input type="image" src="images/star.svg" class="icons__card--star" width=35px id="star-icon"/>
         <input type="image" src="images/delete.svg" class="icons__card--remove" width=35px id="close-icon"/>
       </header>
-        <h2 id="card-title" contenteditable = "true">${idea.title}</h2>
+        <h2 class="idea-card-title" id="card-title" contenteditable = "true">${idea.title}</h2>
         <p class="idea-card-paragraph" id="card-paragraph" contenteditable = "true">${idea.body}</p>
       <div class="idea-card-footer">
       <input type="image" src="images/upvote.svg" class="icons__card--upvote" width=35px id="upvote-icon"  />
