@@ -152,6 +152,11 @@ label {
 }
 
 
+.idea-box {
+ flex-direction: column;
+}
+
+
 label {
  font-size: 16px;
  font-weight: 500;
@@ -193,6 +198,8 @@ label {
   opacity: 0.6;
 }
 
+/* ------- bottom section ---------- */
+
 .idea-placeholder {
   font-weight: 700;
   color: #1f1f3d;
@@ -211,7 +218,8 @@ label {
  flex-flow: column;
  justify-content: space-between;
  font-size: 12px;
- margin: 20px 10px;
+ margin: 10px;
+ border: solid 1px #1f1f3b;
  width:250px;
 }
 
@@ -220,6 +228,19 @@ label {
  text-align: left;
  margin-left: 2%;
 }
+
+
+.idea-card-paragraph {
+  margin-left: 2%;
+  height: 120px;
+}
+
+.idea-card-footer {
+ height: 15%;
+ display: flex;
+ color: #ffffff;
+ justify-content: center;
+ background-color: #5356A5;
 
 .idea-box {
  flex-direction: column;
@@ -245,10 +266,9 @@ label {
 .bottom-section {
   grid-area: footer;
   background-color: #eaeaf4;
-  height: 55vh;
-  display:flex;
-  padding:10px;
-  flex-wrap:wrap;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* ------- first media query ---------- */
@@ -316,5 +336,4 @@ label {
     width: 90%;
     margin: 0 0 0 5%;
   }
-
 }

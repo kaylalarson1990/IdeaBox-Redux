@@ -70,16 +70,21 @@ ideaContainer.addEventListener("mouseout", function(e) {
 
 
 
-//search event listener
-// searchInput.addEventListener("keyup", searchForIdeas(ideaArray, searchInput.value));
+ searchInput.addEventListener("keyup", function() {
+ 	console.log(searchInput.innerText)
+ 	searchForIdeas(searchInput.value);
+ 	event.preventDefault();
+ });
 
 if(ideaArray != []) {
 	pageRefresh(ideaArray);
 }
 
-if(ideaArray == []) {
-  ideaPlaceholder.classList.remove("hidden");
-}
+
+// if(ideaArray == []) {
+// 	ideaPlaceholder.classList.remove('hidden');
+// }
+
 
 /*---------------- Functions ------------*/
 function saveInput() {
@@ -88,6 +93,7 @@ function saveInput() {
 	createNewIdea(item);
   clearInputs();
 }
+
 
 function storeInput(id, title, body,star,quality) {
   var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
@@ -182,6 +188,25 @@ ideaArray.forEach(function(item) {
 	})
 }
 
+
+function searchForIdeas(query) {
+	query = query.toLowerCase();
+	var body;
+	var title;
+	var ideaCards = document.getElementsByClassName("idea-card");
+	for(var i = 0; i < ideaCards.length; i++) {
+		body = ideaCards[i].querySelector("#card-paragraph").innerText;
+		title = ideaCards[i].querySelector("#card-title").innerText;
+		if ((body.toLowerCase().indexOf(query) > -1) || (title.toLowerCase().indexOf(query) > -1)){
+			console.log(body, title);
+			ideaCards[i].style.display = "";
+		} else {
+			ideaCards[i].style.display = "none";
+		}
+
+	}
+}
+
 function classToggle() {
   var navs = document.querySelectorAll(".Navbar__Items")
   navs.forEach(nav => nav.classList.toggle("Navbar__ToggleShow"))
@@ -197,4 +222,5 @@ document.querySelector(".Navbar__Link-toggle")
 // 		return el.toLowerCase().indexOf(query.toLowerCase()) > -1
 // 	})
 // }
+
 
