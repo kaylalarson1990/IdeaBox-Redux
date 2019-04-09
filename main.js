@@ -13,11 +13,11 @@ var searchInput = document.querySelector("#search-input");
 var ideaCard = document.querySelector("#idea-card");
 var starIcon = document.querySelector("#star-icon");
 var closeIcon = document.querySelector(".idea-card-icons");
-var upvoteIcon = document.querySelector("#upvote-icon");
-var downvoteIcon = document.querySelector("#downvote-icon");
+// var upvoteIcon = document.querySelector("#upvote-icon");
+// var downvoteIcon = document.querySelector("#downvote-icon");
 var cardTitle = document.querySelector("#card-title");
 var cardPara = document.querySelector("#card-paragraph");
-var qualityType = document.querySelector("#quality-type");
+// var qualityType = document.querySelector("#quality-type");
 var main = document.querySelector("#main");
 var ideaContainer = document.querySelector(".bottom-section")
 var ideaPlaceholder = document.querySelector(".idea-placeholder");
@@ -49,6 +49,7 @@ ideaContainer.addEventListener("click", function(e) {
     removeCard(e);
   }
 });
+
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
 ideaContainer.addEventListener("mouseout", function(e) {
@@ -56,6 +57,7 @@ ideaContainer.addEventListener("mouseout", function(e) {
     updateBody(e);
   }
 });
+
 ideaContainer.addEventListener("mouseout", function(e) {
   if(e.target.className === "idea-card-title") {
     console.log("updating")
@@ -81,9 +83,6 @@ if(ideaArray != []) {
 }
 
 
-// if(ideaArray == []) {
-// 	ideaPlaceholder.classList.remove('hidden');
-// }
 
 
 /*---------------- Functions ------------*/
@@ -140,6 +139,10 @@ function removeCard(e) {
   e.target.parentElement.parentElement.remove();
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
   postIdeaClass.deleteFromStorage(targetId);
+
+if(ideaArray === []) {
+	ideaPlaceholder.classList.remove('hidden');
+}
 }; 
 
 
@@ -214,13 +217,15 @@ function classToggle() {
 document.querySelector(".Navbar__Link-toggle")
 .addEventListener("click", classToggle);
 
-  
-//search function
 
-// function searchForIdeas(array, query) {
-// 	return ideaArray.filter(function(el) {
-// 		return el.toLowerCase().indexOf(query.toLowerCase()) > -1
-// 	})
-// }
+function updateQuality(quality) {
+	var qualityType = document.querySelector('#quality-type')
+	var upvoteIcon = document.querySelector("#upvote-icon");
+	var downvoteIcon = document.querySelector("#downvote-icon");
+	if(qualityType.innerText === 'Swill') {
+
+	}
+}
+  
 
 
