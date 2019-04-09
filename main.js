@@ -13,11 +13,11 @@ var searchInput = document.querySelector("#search-input");
 var ideaCard = document.querySelector("#idea-card");
 var starIcon = document.querySelector("#star-icon");
 var closeIcon = document.querySelector(".idea-card-icons");
-// var upvoteIcon = document.querySelector("#upvote-icon");
-// var downvoteIcon = document.querySelector("#downvote-icon");
+var upvoteIcon = document.querySelector("#upvote-icon");
+var downvoteIcon = document.querySelector("#downvote-icon");
 var cardTitle = document.querySelector("#card-title");
 var cardPara = document.querySelector("#card-paragraph");
-// var qualityType = document.querySelector("#quality-type");
+var qualityType = document.querySelector("#quality-type");
 var main = document.querySelector("#main");
 var ideaContainer = document.querySelector(".bottom-section")
 var ideaPlaceholder = document.querySelector(".idea-placeholder");
@@ -25,6 +25,7 @@ var downvoteBtn = document.querySelector("#downvote-icon");
 var upVoteBtn = document.querySelector("#upvote-icon");
 var ideaCardHeader = document.querySelector(".idea-card-header")
 var starBtn = document.querySelector("#star-icon")
+var qualities = ['Swill', 'Plausible', 'Genius'];
 /*------------ localStorage -------------*/
 
 
@@ -52,6 +53,7 @@ ideaContainer.addEventListener("click", function(e) {
 
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
+bodyInput.addEventListener("keyup", enableBtn)
 ideaContainer.addEventListener("mouseout", function(e) {
   if(e.target.className === "idea-card-paragraph") {
     updateBody(e);
@@ -126,7 +128,7 @@ function updateTitle(e) {
     for(var i=0; i < parsedItems.length; i++) {
       if(parsedItems[i].id === targetId) {
         var newIdea = parsedItems[i];
-        newIdea.title = e.target.textContent;
+        newIdea.title = e.target.textContent; 
         parsedItems.splice(i, 1, newIdea);
         localStorage.removeItem("ideasSaved");
         localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
@@ -139,10 +141,9 @@ function removeCard(e) {
   e.target.parentElement.parentElement.remove();
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
   postIdeaClass.deleteFromStorage(targetId);
+	// if(ideaArray === []) {
+	// ideaPlaceholder.classList.remove('hidden');
 
-if(ideaArray === []) {
-	ideaPlaceholder.classList.remove('hidden');
-}
 }; 
 
 
@@ -168,7 +169,7 @@ function createNewIdea(idea) {
         <p class="idea-card-paragraph" id="card-paragraph" contenteditable = "true">${idea.body}</p>
       <div class="idea-card-footer">
       <input type="image" src="images/upvote.svg" class="icons__card--upvote" width=35px id="upvote-icon"  />
-          <p>Quality:<span class="quality" id="quality-type">Swill</span></p>
+          <p>Quality:<span class="quality" id="quality-type">${qualities[idea.quality]}</span></p>
           <input type="image" src="images/downvote.svg"
           class="icons__card--downvote" width=35px id="downvote-icon"/>
       </div></figure>
@@ -189,6 +190,15 @@ function pageRefresh(ideaArray) {
 ideaArray.forEach(function(item) {
 	createNewIdea(item);
 	})
+}
+
+function pageLoad() {
+	var array = JSON.parse(localStorage.getItem("ideasSaved"))
+	var newArray = array.map(item => {
+		item = new Idea(item.id, item.title, item.body, item.star, item.quality)
+		return item;
+	})
+	ideaArray = newArray;
 }
 
 
@@ -226,6 +236,10 @@ function updateQuality(quality) {
 
 	}
 }
+
+// var = quality.IndexOf(quality)
+//array of quality types : swill 0, plausible 1, genius 2, save to JSON
+//if  upvote quality math.min
   
 
 
