@@ -1,37 +1,38 @@
-/*------------ Query Selector ---------*/ 
+  /*------------ Query Selector ---------*/ 
 var showStarredIdeas = document.querySelector("#starred-ideas-btn");
-var swillFilter = document.querySelector("#swill-filter");
-var plausibleFilter = document.querySelector("#plausible-filter");
-var geniusFilter = document.querySelector("#genius-filter");
-var newQualityInput = document.querySelector("#new-quality-input");
-var addQualityBtn = document.querySelector("#add-quality-btn");
+// var swillFilter = document.querySelector("#swill-filter");
+// var plausibleFilter = document.querySelector("#plausible-filter");
+// var geniusFilter = document.querySelector("#genius-filter");
+// var newQualityInput = document.querySelector("#new-quality-input");
+// var addQualityBtn = document.querySelector("#add-quality-btn");
 var titleInput = document.querySelector("#title-input");
 var bodyInput = document.querySelector("#body-input");
 var saveBtn = document.querySelector("#btn-save");
 var searchBtn = document.querySelector("#btn-search");
 var searchInput = document.querySelector("#search-input");
-var ideaCard = document.querySelector("#idea-card");
-var starIcon = document.querySelector("#star-icon");
+// var ideaCard = document.querySelector("#idea-card");
+// var starIcon = document.querySelector("#star-icon");
 var closeIcon = document.querySelector(".idea-card-icons");
 var upvoteIcon = document.querySelector("#upvote-icon");
 var downvoteIcon = document.querySelector("#downvote-icon");
 var cardTitle = document.querySelector("#card-title");
 var cardPara = document.querySelector("#card-paragraph");
 var qualityType = document.querySelector("#quality-type");
-var main = document.querySelector("#main");
+
 var ideaContainer = document.querySelector(".bottom-section")
 var ideaPlaceholder = document.querySelector(".idea-placeholder");
 var downvoteBtn = document.querySelector("#downvote-icon");
 var upVoteBtn = document.querySelector("#upvote-icon");
 var ideaCardHeader = document.querySelector(".idea-card-header")
-var starBtn = document.querySelector("#star-icon")
+var starBtn = document.querySelector("#icon--star")
 /*------------ localStorage -------------*/
 
 
 
 //Idea Array//
 var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
-
+var postIdeaClass = new Idea()
+// var qualityArray = [];
 /*------------ Input Var -------------*/
 /*------------- Output Var ------------*/
 
@@ -47,33 +48,17 @@ var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
 ideaContainer.addEventListener("click", removeCard); 
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
-// starBtn.addEventListener("click", starIdea)
+window.addEventListener("load", pageReload);
+
+ideaContainer.addEventListener("click", starIdea)
 // downVoteBtn.addEventListener("click", );
 // upVoteBtn.addEventListener("click", );
-
-
-
 //search event listener
 // searchInput.addEventListener("keyup", searchForIdeas(ideaArray, searchInput.value));
- 
-
-if(ideaArray != []) {
-	pageRefresh(ideaArray);
-}
-
+// if(ideaArray != []) {
+// 	pageReload(ideaArray);
+// }
 /*---------------- Functions ------------*/
-// function upVoteQuality() {
-
-// };
-
-// function downVoteQuality() {
-
-// };
-
-// function starIdea() {
-
-// };
-
 var makeActive = function(elem){
     elem.classList.toggle("is-active");
 }
@@ -82,41 +67,92 @@ var makeActive = function(elem){
 function saveInput() {
 	storeInput();
 	var item = ideaArray[ideaArray.length - 1]
-	createNewIdea(item);
+	appendCard(item);
   clearInputs();
 }
 
-function storeInput(id, title, body,star,quality) {
-  var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
+function storeInput(id, title, body,quality,star ) {
+  var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value, quality,false);
   ideaArray.push(newIdea) 
   var stringified = JSON.stringify(newIdea);
   newIdea.saveToStorage(ideaArray);
 }
 
+// findItem() {
+
+// var parsedItems = parseInt(localStorage.getItem('ideasSaved'));
+// var itemIndex = parsedItems.findIndex(function (idea) {
+//   return idea.id === targetId;
+// });
+// };
 
 function removeCard(e) {
   if(e.target.className === "icons__card--remove") {
     e.target.parentElement.parentElement.remove();
+    postIdeaClass.deleteFromStorage(targetId)
+    var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
   }
-  var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
-  console.log(targetId)
-  var stuff = new Idea()
-  stuff.deleteFromStorage(targetId)
 }; 
 
+function starIdea (e,idea) {
+for(i = 0; i < ideaArray.length; ideaArray++ )
+  if (ideaArray[i].id === (parseInt(e.target.parentElement.parentElement.id))) {
+    ideaArray[i].star = !ideaArray[i].star
+    postIdeaClass.saveToStorage(ideaArray[i])
+    console.log(ideaArray)
+  }
+}
 
-// take anon object , use for loop to pass parameters back into idea Class 
 
-function createNewIdea(idea) {
-	ideaPlaceholder.classList.add('hidden');
+// function targetIdea(){
+// ideaContainer.addEventListener("click", function (e) {
+//   var findId = e.target.parentElement.parentElement.dataset.id;
+//   e.target.className.includes("icons__card--star") ? starIdea(findId) : null;
+// });
+// }
+
+// function changeStar() {
+
+//   if (targetIdea.star === true) {
+//     starIcon.setAttribute('src', 'images/star-active.svg');
+//   }
+//   if (targetIdea.star === false) {
+//     starIcon.setAttribute('src', 'images/star.svg');
+//   }
+// }
+
+
+function pageLoad(postIdeaClass) {
+console.log(ideaArray)
+var idea = [];
+var local = JSON.parse(localStorage.getItem("ideasSaved"))
+for (i = 0; i < ideaArray.length; idea++) {
+var sameIdea = new Idea(ideaArray[i].id, ideaArray[i].title, ideaArray[i].body, ideaArray[i].quality, ideaArray[i].star).push(sameIdea)
+console.log(sameIdea)
+  };
+};
+
+function pageReload() {
+  console.log(ideaArray)
+  if (ideaArray != []) {
+    ideaArray.forEach(function (item) {
+     appendCard(item); 
+  })
+}
+};
+
+function appendCard(idea) {
+  console.log(idea)
+  ideaPlaceholder.classList.add('hidden')
   // var newTitle = titleInput.value;
   // console.log(idea.title);
   // var newBody = bodyInput.value;
   // console.log(idea.body);
 
   ideaContainer.innerHTML = 
-      `<figure class="idea-card" id="idea-card" contenteditable = "true" data-id="${idea.id}"><header class="idea-card-header">
-        <input type="image" src="images/star.svg" class="icons__card--star" width=35px id="star-icon"/>
+    `<figure class="idea-card"  contenteditable = "true" data_id=${idea.id} id=${idea.id}><header class="idea-card-header">
+        <input type="image" src="images/star.svg" class="icons__card--star" width=35px  alt="star idea"
+          />
         <input type="image" src="images/delete.svg" class="icons__card--remove" width=35px id="close-icon"/>
       </header>
         <h2 id="card-title" contenteditable = "true">${idea.title}</h2>
@@ -141,19 +177,3 @@ function clearInputs() {
 function enableBtn() {
 	saveBtn.classList.remove("disabled");
 }
-
-function pageRefresh(ideaArray) {
-ideaArray.forEach(function(item) {
-	createNewIdea(item);
-	})
-}
-
-
-//search function
-
-// function searchForIdeas(array, query) {
-// 	return ideaArray.filter(function(el) {
-// 		return el.toLowerCase().indexOf(query.toLowerCase()) > -1
-// 	})
-// }
-

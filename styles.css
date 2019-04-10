@@ -141,7 +141,9 @@ label {
  grid-area: main;
 }
 
-
+.idea__body--text{
+  resize:none;
+}
 
 label {
  font-size: 16px;
