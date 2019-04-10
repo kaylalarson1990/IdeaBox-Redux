@@ -26,15 +26,13 @@ deleteFromStorage(targetId) {
 
 
 //on page reload parsing all objects back into class Idea 
- updateStar(targetStar) {
-  // var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
-  // var itemIndex = parsedItems.findIndex(function(idea) {
-  //    return idea.id === targetId;
-  // });
-
-  //  parsedItems.splice(itemIndex, 1);
-  // localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
-// pass the method in as an argument in the function 
+ updateStar() {
+ 		this.star = !this.star;
+		if (this.star == true) {
+			this.starImg = "images/star-active.svg"
+		} else {
+			this.starImg = "images/star.svg"
+		}
  }
 
 updateIdea(title, body) {
