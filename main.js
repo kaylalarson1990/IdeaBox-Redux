@@ -50,14 +50,7 @@ saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
 window.addEventListener("load", pageReload);
 
-ideaContainer.addEventListener("click", starIdea)
-// downVoteBtn.addEventListener("click", );
-// upVoteBtn.addEventListener("click", );
-//search event listener
-// searchInput.addEventListener("keyup", searchForIdeas(ideaArray, searchInput.value));
-// if(ideaArray != []) {
-// 	pageReload(ideaArray);
-// }
+ideaContainer.addEventListener("click", starIdea);
 /*---------------- Functions ------------*/
 var makeActive = function(elem){
     elem.classList.toggle("is-active");
