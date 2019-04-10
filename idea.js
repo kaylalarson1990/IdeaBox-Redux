@@ -26,13 +26,13 @@ class Idea {
     // ideaArray.splice(findIndex, 1);
     // this.saveToStorage(ideaArray);
 
- updateStar(targetId) {
+ updateQuality(targetId) {
    var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
 
    var itemIndex = parsedItems.findIndex(function (idea) {
      return idea.id === targetId;
    });
-   parsedItems.splice(itemIndex, 1,starIdea);
+   parsedItems.splice(itemIndex, 1);
    localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
    ;
  };

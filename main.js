@@ -31,6 +31,7 @@ var starBtn = document.querySelector("#icon--star")
 
 //Idea Array//
 var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
+var qualityArray = ["Quality:Swill", "Quality:Plausiable", "Quality:Genius"]
 var postIdeaClass = new Idea()
 // var qualityArray = [];
 /*------------ Input Var -------------*/
@@ -91,18 +92,51 @@ function removeCard(e) {
     e.target.parentElement.parentElement.remove();
     postIdeaClass.deleteFromStorage(targetId)
     var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
-  }
+  };
 }; 
 
 function starIdea (e,idea) {
-for(i = 0; i < ideaArray.length; ideaArray++ )
+for(var i = 0; i < ideaArray.length; i++ ) {
   if (ideaArray[i].id === (parseInt(e.target.parentElement.parentElement.id))) {
     ideaArray[i].star = !ideaArray[i].star
-    postIdeaClass.saveToStorage(ideaArray[i])
-    console.log(ideaArray)
-  }
-}
+   postIdeaClass.saveToStorage(ideaArray[i])
+  };
+};
+   if (e.target.dataset.favorited === "true") {
+    e.target.src = "images/star.svg"
+     e.target.dataset.favorited = "false"
+   };
+   else if (e.target.dataset.favorited === "false") {
+      e.target.src = "images/star-active.svg"
+     e.target.dataset.favorited = "true"
+  };
+  console.log(typeof e.target.dataset.favorited)
+};
 
+
+// function reinstantiate(i) {
+//   var sameIdea = new Idea(ideaArray[i].id, ideaArray[i].title, ideaArray[i].body, ideaArray[i].quality, ideaArray[i].star).push(sameIdea) creating a function to rename as a var to call in each function 
+// }
+
+
+// function quality(e, idea) {
+ 
+//   for (i = 0; i < qualityArray.length; qualityArray++)
+//     if (quality.Array[i].id === (parseInt(e.target.parentElement.parentElement.id))) {
+//       qualityArray[i].quality++
+//       postIdeaClass.saveToStorage(ideaArray[i])
+//     }
+//   };
+
+// function starIdea(e,idea) {
+//   if (e.target.className === "icons__card--star") {
+//     e.target.getAttribute("images/star-active.svg")
+//   }else{
+//     e.target.getAttribute("images/star.svg")
+//     postIdeaClass.saveToStorage(targetId)
+//     var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
+//   }
+// }; 
 
 // function targetIdea(){
 // ideaContainer.addEventListener("click", function (e) {
@@ -121,7 +155,6 @@ for(i = 0; i < ideaArray.length; ideaArray++ )
 //   }
 // }
 
-
 function pageLoad(postIdeaClass) {
 console.log(ideaArray)
 var idea = [];
@@ -137,8 +170,8 @@ function pageReload() {
   if (ideaArray != []) {
     ideaArray.forEach(function (item) {
      appendCard(item); 
-  })
-}
+    })
+  };
 };
 
 function appendCard(idea) {
@@ -151,7 +184,7 @@ function appendCard(idea) {
 
   ideaContainer.innerHTML = 
     `<figure class="idea-card"  contenteditable = "true" data_id=${idea.id} id=${idea.id}><header class="idea-card-header">
-        <input type="image" src="images/star.svg" class="icons__card--star" width=35px  alt="star idea"
+        <input type="image" data-favorited =${idea.star}   src=${idea.star === true ? "images/star-active.svg" :  "images/star.svg" } class="icons__card--star" id="icon--star" width=35px  alt="star idea"
           />
         <input type="image" src="images/delete.svg" class="icons__card--remove" width=35px id="close-icon"/>
       </header>
