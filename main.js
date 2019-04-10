@@ -29,7 +29,8 @@ var qualities = ["Swill", "Plausible", "Genius"];
 /*------------ localStorage -------------*/
 //Idea Array//
 var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
-var postIdeaClass = new Idea();
+// var postIdeaClass = new Idea();
+
 /*------------ Input Var -------------*/
 /*------------- Output Var ------------*/
 
@@ -47,11 +48,6 @@ ideaContainer.addEventListener("click", function(e) {
     removeCard(e);
   }
 });
-
-saveBtn.addEventListener("click", saveInput);
-
-titleInput.addEventListener("keyup", enableBtn);
-
 ideaContainer.addEventListener("mouseout", function(e) {
   if(e.target.className === "idea-card-paragraph") {
     updateBody(e);
@@ -60,6 +56,16 @@ ideaContainer.addEventListener("mouseout", function(e) {
     updateTitle(e);
   }
 });
+ideaContainer.addEventListener("click", function(e) {
+	if(e.target.className === "icons__card--upvote") {
+		changeQuality(e);
+	}
+});
+saveBtn.addEventListener("click", saveInput);
+titleInput.addEventListener("keyup", enableBtn);
+bodyInput.addEventListener("keyup", enableBtn)
+searchInput.addEventListener("keyup", function() {
+ 	console.log(searchInput.innerText)
 
 swillFilter.addEventListener("click", filterIdeaByQuality(qualities));
 // plausibleFilter.addEventListener("click", filterIdeaByQuality());
@@ -77,10 +83,14 @@ swillFilter.addEventListener("click", filterIdeaByQuality(qualities));
 if(ideaArray != []) {
 	pageRefresh(ideaArray);
 }
+
+
+// starBtn.addEventListener("click", starIdea)
+// downVoteBtn.addEventListener("click", );
+// upVoteBtn.addEventListener("click", );
 // if(ideaArray == []) {
 // 	ideaPlaceholder.classList.remove('hidden');
 // }
-
 
 /*---------------- Functions ------------*/
 function saveInput() {
@@ -118,19 +128,34 @@ function updateTitle(e) {
     console.log(e);
     for(var i=0; i < parsedItems.length; i++) {
       if(parsedItems[i].id === targetId) {
-        var newIdea = parsedItems[i];
-        newIdea.title = e.target.textContent;
+        var newIdea = parsedItems[i]; //parsedItems[i].updateQuality('upvote')
+        newIdea.title = e.target.textContent; 
         parsedItems.splice(i, 1, newIdea);
         localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
     }
   }
 }
 
+function changeQuality(e, change) {
+	var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+	console.log(parsedItems);
+	var targetParent = e.target.parentElement.parentElement;
+	console.log(targetParent);
+	var targetId = JSON.parse(targetParent.dataset.id);
+	console.log(targetId);
+	for(var i = 0; i < parsedItems.length; i++) {
+		if(parsedItems[i].id === targetId) {
+			parsedItems[i].updateQuality('upvote')
+		}
+	}
+}
 
 function removeCard(e) {
   e.target.parentElement.parentElement.remove();
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
-  postIdeaClass.deleteFromStorage(ideaArray);
+  postIdeaClass.deleteFromStorage(targetId);
+	// if(ideaArray === []) {
+	// ideaPlaceholder.classList.remove('hidden');
 }; 
 
 
@@ -156,7 +181,7 @@ function createNewIdea(idea) {
         <p class="idea-card-paragraph" id="card-paragraph" contenteditable = "true">${idea.body}</p>
       <div class="idea-card-footer">
       <input type="image" src="images/upvote.svg" class="icons__card--upvote" width=35px id="upvote-icon"  />
-          <p>Quality:<span class="quality" id="quality-type">Swill</span></p>
+          <p>Quality:<span class="quality" id="quality-type">${qualities[idea.quality]}</span></p>
           <input type="image" src="images/downvote.svg"
           class="icons__card--downvote" width=35px id="downvote-icon"/>
       </div></figure>
@@ -176,6 +201,14 @@ function enableBtn() {
 function pageRefresh(ideaArray) {
 ideaArray.forEach(function(item) {
 	createNewIdea(item);
+	})
+}
+
+function pageLoad() {
+	var array = JSON.parse(localStorage.getItem("ideasSaved"))
+	var newArray = array.map(item => {
+		item = new Idea(item.id, item.title, item.body, item.star, item.quality)
+		return item;
 	})
 }
 
@@ -223,13 +256,8 @@ function classToggle() {
 document.querySelector(".Navbar__Link-toggle")
 .addEventListener("click", classToggle);
 
-  
-//search function
 
-// function searchForIdeas(array, query) {
-// 	return ideaArray.filter(function(el) {
-// 		return el.toLowerCase().indexOf(query.toLowerCase()) > -1
-// 	})
-// }
+
+//add parameters to event listener 
 
 

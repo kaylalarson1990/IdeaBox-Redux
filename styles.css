@@ -13,8 +13,9 @@ body {
 main {
   font-family: "Open Sans", sans-serif;
   display: grid;
+  height: 100%;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows:1fr 1fr;
   grid-template-areas:
    "sidebar main"
  "sidebar footer";
@@ -164,7 +165,7 @@ label {
 }
 
 #body-input {
- padding: 50px;
+ height: 100px;
 }
 
 .btn-save-idea {
