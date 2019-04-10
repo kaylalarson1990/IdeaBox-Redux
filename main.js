@@ -50,31 +50,21 @@ ideaContainer.addEventListener("click", function(e) {
     removeCard(e);
   }
 });
-
-saveBtn.addEventListener("click", saveInput);
-titleInput.addEventListener("keyup", enableBtn);
-bodyInput.addEventListener("keyup", enableBtn)
 ideaContainer.addEventListener("mouseout", function(e) {
   if(e.target.className === "idea-card-paragraph") {
     updateBody(e);
   }
 });
-
 ideaContainer.addEventListener("mouseout", function(e) {
   if(e.target.className === "idea-card-title") {
     console.log("updating")
     updateTitle(e);
   }
 })
-
-
-// starBtn.addEventListener("click", starIdea)
-// downVoteBtn.addEventListener("click", );
-// upVoteBtn.addEventListener("click", );
-
-
-
- searchInput.addEventListener("keyup", function() {
+saveBtn.addEventListener("click", saveInput);
+titleInput.addEventListener("keyup", enableBtn);
+bodyInput.addEventListener("keyup", enableBtn)
+searchInput.addEventListener("keyup", function() {
  	console.log(searchInput.innerText)
  	searchForIdeas(searchInput.value);
  	event.preventDefault();
@@ -85,6 +75,10 @@ if(ideaArray != []) {
 }
 
 
+
+// starBtn.addEventListener("click", starIdea)
+// downVoteBtn.addEventListener("click", );
+// upVoteBtn.addEventListener("click", );
 
 
 /*---------------- Functions ------------*/
@@ -228,18 +222,6 @@ document.querySelector(".Navbar__Link-toggle")
 .addEventListener("click", classToggle);
 
 
-function updateQuality(quality) {
-	var qualityType = document.querySelector('#quality-type')
-	var upvoteIcon = document.querySelector("#upvote-icon");
-	var downvoteIcon = document.querySelector("#downvote-icon");
-	if(qualityType.innerText === 'Swill') {
 
-	}
-}
-
-// var = quality.IndexOf(quality)
-//array of quality types : swill 0, plausible 1, genius 2, save to JSON
-//if  upvote quality math.min
-  
 
 
