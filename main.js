@@ -32,7 +32,7 @@ var qualities = ['Swill', 'Plausible', 'Genius'];
 
 //Idea Array//
 var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
-var postIdeaClass = new Idea()
+// var postIdeaClass = new Idea();
 /*------------ Input Var -------------*/
 /*------------- Output Var ------------*/
 
@@ -60,7 +60,12 @@ ideaContainer.addEventListener("mouseout", function(e) {
     console.log("updating")
     updateTitle(e);
   }
-})
+});
+ideaContainer.addEventListener("click", function(e) {
+	if(e.target.className === "icons__card--upvote") {
+		changeQuality(e);
+	}
+});
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
 bodyInput.addEventListener("keyup", enableBtn)
@@ -121,7 +126,7 @@ function updateTitle(e) {
     console.log(targetId);
     for(var i=0; i < parsedItems.length; i++) {
       if(parsedItems[i].id === targetId) {
-        var newIdea = parsedItems[i];
+        var newIdea = parsedItems[i]; //parsedItems[i].updateQuality('upvote')
         newIdea.title = e.target.textContent; 
         parsedItems.splice(i, 1, newIdea);
         localStorage.removeItem("ideasSaved");
@@ -130,6 +135,19 @@ function updateTitle(e) {
   }
 }
 
+function changeQuality(e, change) {
+	var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+	console.log(parsedItems);
+	var targetParent = e.target.parentElement.parentElement;
+	console.log(targetParent);
+	var targetId = JSON.parse(targetParent.dataset.id);
+	console.log(targetId);
+	for(var i = 0; i < parsedItems.length; i++) {
+		if(parsedItems[i].id === targetId) {
+			parsedItems[i].updateQuality('upvote')
+		}
+	}
+}
 
 function removeCard(e) {
   e.target.parentElement.parentElement.remove();
@@ -192,7 +210,6 @@ function pageLoad() {
 		item = new Idea(item.id, item.title, item.body, item.star, item.quality)
 		return item;
 	})
-	ideaArray = newArray;
 }
 
 
@@ -223,5 +240,6 @@ document.querySelector(".Navbar__Link-toggle")
 
 
 
+//add parameters to event listener 
 
 
