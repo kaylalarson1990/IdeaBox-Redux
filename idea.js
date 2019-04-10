@@ -7,47 +7,48 @@ class Idea {
     this.quality = quality || 0; 
     
   }
-  saveToStorage() {
+
+saveToStorage() {
         var stringified = JSON.stringify(ideaArray);
         localStorage.setItem("ideasSaved", stringified);
   }
 
+
 deleteFromStorage(targetId) {
   var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
-  // var ideaToDelete = new Idea(findId.id, findId.title, findId.body);
-  // findId.deleteFromStorage(findIndex);
   var itemIndex = parsedItems.findIndex(function(idea) {
+    console.log(idea.id)
      return idea.id === targetId;
   });
   parsedItems.splice(itemIndex, 1);
   localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
-  ;
 }
 
 
 //on page reload parsing all objects back into class Idea 
  updateStar(targetStar) {
-  var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
-  var itemIndex = parsedItems.findIndex(function(idea) {
-     return idea.id === targetId;
-  });
+  // var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
+  // var itemIndex = parsedItems.findIndex(function(idea) {
+  //    return idea.id === targetId;
+  // });
 
-   parsedItems.splice(itemIndex, 1);
-  localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
+  //  parsedItems.splice(itemIndex, 1);
+  // localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
 // pass the method in as an argument in the function 
- };
+ }
 
- 	updateIdea(title, body) {
+ 	updateBody(targetId) {
     
+  }
 
-
+  updateTitle(targetId) {
     
- 	}
+  }
 
  	updateQuality() {
 
     ///global array of Quality 
-}
+  }
 }
 // as written cant take stringified objects and apply Idea methods to them, need to rewrite to be able to use class Idea methods. 
 
