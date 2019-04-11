@@ -4,6 +4,7 @@ IdeaBox Redux is an app that allows a user to keep track of their ideas as they 
 
 For the developer, IdeaBox Redux is excellent practice for working with localStorage and JSON, as well as JavaScript and even some CSS and HTML. Concepts include iterating through arrays, working with objects, event bubbling and event delegation, and practice with grid and flexbox. It serves as a fun playground and experiment for the developer and a useful idea piggy bank for the user. Feel free to re-create, adapt, and enjoy!
 
-![alt text](
+<img width="1439" alt="Screen Shot 2019-04-11 at 9 40 21 AM" src="https://user-images.githubusercontent.com/47507801/55971298-6ee8f780-5c3e-11e9-8e1e-39f3aeca4585.png">
+
 
 <https://kaylalarson1990.github.io/IdeaBox-Redux/>
