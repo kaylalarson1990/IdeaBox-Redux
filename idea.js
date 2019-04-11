@@ -24,37 +24,20 @@ deleteFromStorage(targetId) {
   localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
 }
 
+updateQuality(qual) {
+      if (qual == 'upvote') {
+    this.quality = Math.min(this.quality + 1, 2)
+    } else {
+    this.quality = Math.max(this.quality - 1, 0)
+    }
+  }
+
 
 //on page reload parsing all objects back into class Idea 
  updateStar(targetStar) {
-  // var parsedItems = JSON.parse(localStorage.getItem('ideasSaved'));
-  // var itemIndex = parsedItems.findIndex(function(idea) {
-  //    return idea.id === targetId;
-  // });
 
-  //  parsedItems.splice(itemIndex, 1);
-  // localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
-// pass the method in as an argument in the function 
  }
 
- 	updateBody(targetId) {
-    
-  }
-
-  updateTitle(targetId) {
-    
-  }
-
- 	updateQuality() {
-
-    ///global array of Quality 
-  }
 }
-// as written cant take stringified objects and apply Idea methods to them, need to rewrite to be able to use class Idea methods. 
-
-// parse things to global var, pull anon objects from local storage, make into class Idea so that other class Idea methods are able to be used. 
 
 
-// this.quality = quality || 0;
-
-    /* adding cards set to false / targeting false set to true , event click btn filter starred ideas , using a boolean to determine if starred or false , have a function that changes to free*/

@@ -11,7 +11,6 @@ var saveBtn = document.querySelector("#btn-save");
 var searchBtn = document.querySelector("#btn-search");
 var searchInput = document.querySelector("#search-input");
 var ideaCard = document.querySelector("#idea-card");
-var starIcon = document.querySelector("#star-icon");
 var closeIcon = document.querySelector(".idea-card-icons");
 var upvoteIcon = document.querySelector("#upvote-icon");
 var downvoteIcon = document.querySelector("#downvote-icon");
@@ -29,28 +28,15 @@ var qualities = ["Swill", "Plausible", "Genius"];
 /*------------ localStorage -------------*/
 //Idea Array//
 var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
+
 var postIdeaClass = new Idea();
-/*------------ Input Var -------------*/
-/*------------- Output Var ------------*/
-
-/*------------- Buttons --------------*/ 
-
-/*----------- HTML Elements ----------*/ 
-
-/*------------- Global Variables ---------*/
 
 /*------------- Event Listeners ----------*/
-
-
 ideaContainer.addEventListener("click", function(e) {
   if(e.target.className === "icons__card--remove") {
     removeCard(e);
   }
 });
-
-saveBtn.addEventListener("click", saveInput);
-
-titleInput.addEventListener("keyup", enableBtn);
 
 ideaContainer.addEventListener("mouseout", function(e) {
   if(e.target.className === "idea-card-paragraph") {
@@ -61,10 +47,27 @@ ideaContainer.addEventListener("mouseout", function(e) {
   }
 });
 
-swillFilter.addEventListener("click", filterIdeaByQuality(qualities));
-// plausibleFilter.addEventListener("click", filterIdeaByQuality());
-// geniusFilter.addEventListener("click", filterIdeaByQuality());
+ideaContainer.addEventListener("click", function(e) {
+  if(e.target.className === "icons__card--upvote") {
+    changeQuality(e);
+  }
+});
 
+saveBtn.addEventListener("click", saveInput);
+
+titleInput.addEventListener("keyup", enableBtn);
+
+swillFilter.addEventListener("click", function(e) {
+  e.target.className.includes("swill") ? filterIdeaByQuality(0): null;
+});
+
+plausibleFilter.addEventListener("click", function(e) {
+  e.target.className.includes("plausible") ? filterIdeaByQuality(1): null;
+});
+
+geniusFilter.addEventListener("click", function(e) {
+  e.target.className.includes("genius") ? filterIdeaByQuality(2): null;
+});
 
 // starBtn.addEventListener("click", starIdea)
 // downVoteBtn.addEventListener("click", );
@@ -77,10 +80,6 @@ swillFilter.addEventListener("click", filterIdeaByQuality(qualities));
 if(ideaArray != []) {
 	pageRefresh(ideaArray);
 }
-// if(ideaArray == []) {
-// 	ideaPlaceholder.classList.remove('hidden');
-// }
-
 
 /*---------------- Functions ------------*/
 function saveInput() {
@@ -89,7 +88,6 @@ function saveInput() {
 	createNewIdea(item);
   clearInputs();
 }
-
 
 function storeInput(id, title, body,star,quality) {
   var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
@@ -126,13 +124,25 @@ function updateTitle(e) {
   }
 }
 
+function changeQuality(e, change) {
+  var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+  console.log(parsedItems);
+  var targetParent = e.target.parentElement.parentElement;
+  console.log(targetParent);
+  var targetId = JSON.parse(targetParent.dataset.id);
+  console.log(targetId);
+  for(var i = 0; i < parsedItems.length; i++) {
+    if(parsedItems[i].id === targetId) {
+      parsedItems[i].updateQuality('upvote')
+    }
+  }
+}
 
 function removeCard(e) {
   e.target.parentElement.parentElement.remove();
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
   postIdeaClass.deleteFromStorage(ideaArray);
 }; 
-
 
 function starIdea(e) {
   if (e.target.className === "icons__card-star") {
@@ -141,9 +151,6 @@ function starIdea(e) {
   var targetStar = parseInt(e.target.parentElement.parentElement.dataset.id)
   // postIdeaClass.updateStar(targetId)
 }
-
-
-// take anon object , use for loop to pass parameters back into idea Class 
 
 function createNewIdea(idea) {
 	ideaPlaceholder.classList.add("hidden");
@@ -156,7 +163,7 @@ function createNewIdea(idea) {
         <p class="idea-card-paragraph" id="card-paragraph" contenteditable = "true">${idea.body}</p>
       <div class="idea-card-footer">
       <input type="image" src="images/upvote.svg" class="icons__card--upvote" width=35px id="upvote-icon"  />
-          <p>Quality:<span class="quality" id="quality-type">Swill</span></p>
+          <p>Quality:<span class="quality" id="quality-type">${qualities[idea.quality]}</span></p>
           <input type="image" src="images/downvote.svg"
           class="icons__card--downvote" width=35px id="downvote-icon"/>
       </div></figure>
@@ -179,7 +186,6 @@ ideaArray.forEach(function(item) {
 	})
 }
 
-
 function searchForIdeas(query) {
 	query = query.toLowerCase();
 	var body;
@@ -197,24 +203,16 @@ function searchForIdeas(query) {
 	}
 }
 
-function filterIdeaByQuality(item) {
+function filterIdeaByQuality(num) {
   var qualityArr = [];
-  console.log(item);
-  item.forEach(function(i) {
-    qualityArr[i] = (qualityArr[i] || 0);
-    console.log(qualityArr[i]);
-    qualityArr[i]++;
-    console.log(qualityArr[i]);
+  ideaArray.forEach(function(card) {
+    if(card.quality == num) {
+      qualityArr.push(card);
+    }
   });
-  return qualityArr;
-  // ideaArray.map(function(item) {
-  //   if(item.quality == num) {
-  //     qualityArr.push(item)
-  //   }
-  //   ideaContainer.innerHTML = '';
-  // }); 
+  ideaContainer.innerHTML = '';
+  pageRefresh(qualityArr);
 }
-
 
 function classToggle() {
   var navs = document.querySelectorAll(".Navbar__Items")
@@ -223,13 +221,5 @@ function classToggle() {
 document.querySelector(".Navbar__Link-toggle")
 .addEventListener("click", classToggle);
 
-  
-//search function
-
-// function searchForIdeas(array, query) {
-// 	return ideaArray.filter(function(el) {
-// 		return el.toLowerCase().indexOf(query.toLowerCase()) > -1
-// 	})
-// }
 
 
