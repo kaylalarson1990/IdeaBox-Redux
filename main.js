@@ -47,21 +47,22 @@ ideaContainer.addEventListener("mouseout", function(e) {
 });
 
 ideaContainer.addEventListener("click", function(e) {
-	e.target.className.includes(".icons__card--upvote") ? changeQuality(e, 'upvote') : null;
-	e.target.className.includes(".icons__card--downvote") ? changeQuality(e, 'downvote') : null;
+	e.target.className.includes("icons__card--upvote") ? changeQuality(e, 'upvote') : null;
+	e.target.className.includes("icons__card--downvote") ? changeQuality(e, 'downvote') : null;
 	e.target.className.includes("icons__card--remove") ? removeCard(e) : null;	
 });
 
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
-bodyInput.addEventListener("keyup", enableBtn)
+bodyInput.addEventListener("keyup", enableBtn);
 
 // swillFilter.addEventListener("click", filterIdeaByQuality(qualities));
 // plausibleFilter.addEventListener("click", filterIdeaByQuality());
 // geniusFilter.addEventListener("click", filterIdeaByQuality());
 
 
- searchInput.addEventListener("keyup", searchForIdeas(searchInput.value));
+ searchInput.addEventListener("keyup", function() {
+ 	searchForIdeas(searchInput.value)});
 
 /*------------- Default Page Actions ----------*/
 if(ideaArray != []) {
@@ -69,7 +70,6 @@ if(ideaArray != []) {
 }
 
 
-// starBtn.addEventListener("click", starIdea)
 
 
 /*---------------- Functions ------------*/
@@ -81,7 +81,7 @@ function saveInput() {
 }
 
 
-function storeInput(id, title, body,star,quality) {
+function storeInput(id, title, body, star, starIcon, quality) {
   var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
   ideaArray.push(newIdea) 
   var stringified = JSON.stringify(newIdea);
@@ -126,16 +126,16 @@ function removeCard(e) {
 	}; 
 }
 
-// function changeQuality(e, change) {
-// 	e.target.
-// }
-
-function starIdea(e) {
-  
-  var targetStar = parseInt(e.target.parentElement.parentElement.dataset.id)
-  postIdeaClass.updateStar(targetId)
+function changeQuality(e, change) {
+	var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+	var targetId = JSON.parse(e.target.parentElement.dataset.id);
+	console.log(e);
+	for(var i = 0; i < parsedItems.length; i++) {
+		if(parsedItems[i].id === targetId) {
+			var newIdea = parsedItems[i].updateQuality('upvote')
+		}
+	}
 }
-
 
 // take anon object , use for loop to pass parameters back into idea Class 
 
@@ -199,23 +199,6 @@ function searchForIdeas(query) {
 	}
 }
 
-// function filterIdeaByQuality(item) {
-//   var qualityArr = [];
-//   console.log(item);
-//   item.forEach(function(i) {
-//     qualityArr[i] = (qualityArr[i] || 0);
-//     console.log(qualityArr[i]);
-//     qualityArr[i]++;
-//     console.log(qualityArr[i]);
-//   });
-//   return qualityArr;
-  // ideaArray.map(function(item) {
-  //   if(item.quality == num) {
-  //     qualityArr.push(item)
-  //   }
-  //   ideaContainer.innerHTML = '';
-  // }); 
-// }
 
 
 function classToggle() {
