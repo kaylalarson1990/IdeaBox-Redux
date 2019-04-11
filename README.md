@@ -9,4 +9,4 @@ For the developer, IdeaBox Redux is excellent practice for working with localSto
 <img width="1430" alt="Screen Shot 2019-04-11 at 9 41 31 AM" src="https://user-images.githubusercontent.com/47507801/55971412-a8b9fe00-5c3e-11e9-925b-31a57ad6218c.png">
 
 
-View and play with example [here]:(https://kaylalarson1990.github.io/IdeaBox-Redux/)
+View and play with example [here](https://kaylalarson1990.github.io/IdeaBox-Redux/).
