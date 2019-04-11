@@ -1,9 +1,10 @@
 class Idea {
-  constructor(id, title, body,star,quality) {
+  constructor(id, title, body,star, starIcon, quality) {
     this.id = id;
     this.title = title;
     this.body = body;
     this.star = false; 
+    this.starIcon = starIcon || "images/star.svg"
     this.quality = quality || 0; 
     
   }
@@ -29,24 +30,15 @@ deleteFromStorage(targetId) {
  updateStar() {
  		this.star = !this.star;
 		if (this.star == true) {
-			this.starImg = "images/star-active.svg"
+			this.starIcon = "images/star-active.svg"
 		} else {
-			this.starImg = "images/star.svg"
+			this.starIcon = "images/star.svg"
 		}
  }
 
-updateIdea(title, body) {
+	updateIdea(title, body) {
   
- }
-
-updateBody(targetId) {
-    
-  }
-
-
-  updateTitle(targetId) {
-    
-  }
+ 	}
 
  	updateQuality(qual) {
  			if (qual == 'upvote') {

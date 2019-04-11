@@ -26,18 +26,11 @@ var ideaCardHeader = document.querySelector(".idea-card-header");
 var starBtn = document.querySelector("#star-icon");
 var qualities = ["Swill", "Plausible", "Genius"];
 /*------------ localStorage -------------*/
+
 //Idea Array//
 var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
 var postIdeaClass = new Idea();
 
-/*------------ Input Var -------------*/
-/*------------- Output Var ------------*/
-
-/*------------- Buttons --------------*/ 
-
-/*----------- HTML Elements ----------*/ 
-
-/*------------- Global Variables ---------*/
 
 /*------------- Event Listeners ----------*/
 
@@ -47,21 +40,24 @@ ideaContainer.addEventListener("mouseout", function(e) {
 });
 
 ideaContainer.addEventListener("click", function(e) {
-	e.target.className.includes(".icons__card--upvote") ? changeQuality(e, 'upvote') : null;
-	e.target.className.includes(".icons__card--downvote") ? changeQuality(e, 'downvote') : null;
+	e.target.className.includes("icons__card--upvote") ? changeQuality(e, 'upvote') : null;
+	e.target.className.includes("icons__card--downvote") ? changeQuality(e, 'downvote') : null;
 	e.target.className.includes("icons__card--remove") ? removeCard(e) : null;	
+	e.target.className.includes("icons__card--star") ? starToggle(e) : null;
 });
 
 saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
-bodyInput.addEventListener("keyup", enableBtn)
+bodyInput.addEventListener("keyup", enableBtn);
+
 
 // swillFilter.addEventListener("click", filterIdeaByQuality(qualities));
 // plausibleFilter.addEventListener("click", filterIdeaByQuality());
 // geniusFilter.addEventListener("click", filterIdeaByQuality());
 
 
- searchInput.addEventListener("keyup", searchForIdeas(searchInput.value));
+ searchInput.addEventListener("keyup", function() {
+ 	searchForIdeas(searchInput.value)});
 
 /*------------- Default Page Actions ----------*/
 if(ideaArray != []) {
@@ -69,7 +65,6 @@ if(ideaArray != []) {
 }
 
 
-// starBtn.addEventListener("click", starIdea)
 
 
 /*---------------- Functions ------------*/
@@ -81,7 +76,7 @@ function saveInput() {
 }
 
 
-function storeInput(id, title, body,star,quality) {
+function storeInput(id, title, body, star, starIcon, quality) {
   var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
   ideaArray.push(newIdea) 
   var stringified = JSON.stringify(newIdea);
@@ -120,22 +115,21 @@ function updateTitle(e) {
 function removeCard(e) {
   e.target.parentElement.parentElement.remove();
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
-  postIdeaClass.deleteFromStorage(targetId);
-	if(ideaArray == [] || 0) {
-	ideaPlaceholder.classList.remove('hidden');
-	}; 
+  postIdeaClass.deleteFromStorage(targetId); 
 }
 
-// function changeQuality(e, change) {
-// 	e.target.
-// }
-
-function starIdea(e) {
-  
-  var targetStar = parseInt(e.target.parentElement.parentElement.dataset.id)
-  postIdeaClass.updateStar(targetId)
+function changeQuality(e, change) {
+	var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+	var targetId = JSON.parse(e.target.parentElement.parentElement.dataset.id);
+	console.log(e);
+	for(var i = 0; i < parsedItems.length; i++) {
+		if(parsedItems[i].id === targetId) {
+			var newIdea = parsedItems[i];
+			parsedItems.updateQuality('upvote');
+			localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
+		}
+	}
 }
-
 
 // take anon object , use for loop to pass parameters back into idea Class 
 
@@ -199,23 +193,21 @@ function searchForIdeas(query) {
 	}
 }
 
-// function filterIdeaByQuality(item) {
-//   var qualityArr = [];
-//   console.log(item);
-//   item.forEach(function(i) {
-//     qualityArr[i] = (qualityArr[i] || 0);
-//     console.log(qualityArr[i]);
-//     qualityArr[i]++;
-//     console.log(qualityArr[i]);
-//   });
-//   return qualityArr;
-  // ideaArray.map(function(item) {
-  //   if(item.quality == num) {
-  //     qualityArr.push(item)
-  //   }
-  //   ideaContainer.innerHTML = '';
-  // }); 
-// }
+// function starToggle(e) {
+// 	var ideaCards = document.getElementsByClassName("idea-card");
+// 	var star;
+
+// 	// var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+// 	// var targetId = JSON.parse(e.target.parentElement.dataset.id);
+// 	for(var i=0; i < ideaCards.length; i++) {
+// 		star = ideaCards[i].querySelector("#star-icon").innerHTML;
+
+		
+		
+// 		}
+// 	}
+
+
 
 
 function classToggle() {
