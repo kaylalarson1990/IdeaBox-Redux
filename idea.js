@@ -25,7 +25,6 @@ deleteFromStorage(targetId) {
   localStorage.setItem("ideasSaved", JSON.stringify(parsedItems));
 }
 
-
 //on page reload parsing all objects back into class Idea 
  updateStar() {
  		this.star = !this.star;

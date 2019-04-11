@@ -31,7 +31,6 @@ var qualities = ["Swill", "Plausible", "Genius"];
 var ideaArray = JSON.parse(localStorage.getItem("ideasSaved")) || [];
 var postIdeaClass = new Idea();
 
-
 /*------------- Event Listeners ----------*/
 
 ideaContainer.addEventListener("mouseout", function(e) {
@@ -50,11 +49,17 @@ saveBtn.addEventListener("click", saveInput);
 titleInput.addEventListener("keyup", enableBtn);
 bodyInput.addEventListener("keyup", enableBtn);
 
+swillFilter.addEventListener("click", function(e) {
+  e.target.className.includes("swill") ? filterIdeaByQuality(0): null;
+});
 
-// swillFilter.addEventListener("click", filterIdeaByQuality(qualities));
-// plausibleFilter.addEventListener("click", filterIdeaByQuality());
-// geniusFilter.addEventListener("click", filterIdeaByQuality());
+plausibleFilter.addEventListener("click", function(e) {
+  e.target.className.includes("plausible") ? filterIdeaByQuality(1): null;
+});
 
+geniusFilter.addEventListener("click", function(e) {
+  e.target.className.includes("genius") ? filterIdeaByQuality(2): null;
+});
 
  searchInput.addEventListener("keyup", function() {
  	searchForIdeas(searchInput.value)});
@@ -64,9 +69,6 @@ if(ideaArray != []) {
 	pageRefresh(ideaArray);
 }
 
-
-
-
 /*---------------- Functions ------------*/
 function saveInput() {
 	storeInput();
@@ -74,7 +76,6 @@ function saveInput() {
 	createNewIdea(item);
   clearInputs();
 }
-
 
 function storeInput(id, title, body, star, starIcon, quality) {
   var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
@@ -111,10 +112,33 @@ function updateTitle(e) {
   }
 }
 
+function changeQuality(e, change) {
+  var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
+  console.log(parsedItems);
+  var targetParent = e.target.parentElement.parentElement;
+  console.log(targetParent);
+  var targetId = JSON.parse(targetParent.dataset.id);
+  console.log(targetId);
+  for(var i = 0; i < parsedItems.length; i++) {
+    if(parsedItems[i].id === targetId) {
+      parsedItems[i].updateQuality('upvote')
+    }
+  }
+}
 
 function removeCard(e) {
   e.target.parentElement.parentElement.remove();
   var targetId = parseInt(e.target.parentElement.parentElement.dataset.id);
+  postIdeaClass.deleteFromStorage(ideaArray);
+}; 
+
+function starIdea(e) {
+  if (e.target.className === "icons__card-star") {
+    e.target.class
+  }
+  var targetStar = parseInt(e.target.parentElement.parentElement.dataset.id)
+  // postIdeaClass.updateStar(targetId)
+}
   postIdeaClass.deleteFromStorage(targetId); 
 }
 
@@ -130,8 +154,6 @@ function changeQuality(e, change) {
 		}
 	}
 }
-
-// take anon object , use for loop to pass parameters back into idea Class 
 
 function createNewIdea(idea) {
 	ideaPlaceholder.classList.add("hidden");
@@ -175,7 +197,6 @@ function pageLoad() {
 	})
 }
 
-
 function searchForIdeas(query) {
 	query = query.toLowerCase();
 	var body;
@@ -193,6 +214,17 @@ function searchForIdeas(query) {
 	}
 }
 
+function filterIdeaByQuality(num) {
+  var qualityArr = [];
+  ideaArray.forEach(function(card) {
+    if(card.quality == num) {
+      qualityArr.push(card);
+    }
+  });
+  ideaContainer.innerHTML = '';
+  pageRefresh(qualityArr);
+}
+
 // function starToggle(e) {
 // 	var ideaCards = document.getElementsByClassName("idea-card");
 // 	var star;
@@ -201,21 +233,13 @@ function searchForIdeas(query) {
 // 	// var targetId = JSON.parse(e.target.parentElement.dataset.id);
 // 	for(var i=0; i < ideaCards.length; i++) {
 // 		star = ideaCards[i].querySelector("#star-icon").innerHTML;
-
-		
-		
 // 		}
 // 	}
 
-
-
-
+//hamburger menu functionality
 function classToggle() {
   var navs = document.querySelectorAll(".Navbar__Items")
   navs.forEach(nav => nav.classList.toggle("Navbar__ToggleShow"))
 }
 document.querySelector(".Navbar__Link-toggle")
 .addEventListener("click", classToggle);
-
-
-
