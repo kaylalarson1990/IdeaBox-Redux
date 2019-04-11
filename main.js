@@ -139,8 +139,6 @@ function starIdea(e) {
   var targetStar = parseInt(e.target.parentElement.parentElement.dataset.id)
   // postIdeaClass.updateStar(targetId)
 }
-  postIdeaClass.deleteFromStorage(targetId); 
-}
 
 function changeQuality(e, change) {
 	var parsedItems = JSON.parse(localStorage.getItem("ideasSaved"));
